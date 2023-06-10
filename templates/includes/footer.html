@@ -1,0 +1,70 @@
+{% load static %}
+
+<!-- ###################################################################################################
+     ############################################  FOOTER  #############################################
+     ################################################################################################### -->
+         <footer>
+          <div class="footer-container">
+            <!-- CONTACT ET LOGOS RS GAUCHE -->
+            <div class="footer-contact" id="contact_section">
+              <h3>Contact</h3>
+              <p><strong>ADRESSE :</strong></p>
+              <a href="https://www.google.com/maps/dir/?api=1&destination=7+Rue,+Florent+Evrard+62260+Auchel&travelmode=driving" target="_blank" rel="noopener"><p><em>7 Rue Florent Evrard, 62260 Auchel</em></p></a>
+              <p><strong>TELEPHONE :</strong></p>
+              <a href="tel:+33762253313"><p>+33 7 62 25 33 13</p></a>
+              <p><strong>E-MAIL :</strong></p>
+              <a href="mailto:maboutiquedereve62260@gmail.com"><p><em>maboutiquedereve62260@gmail.com</em></p</a>
+              <div class="footer-socials">
+                <a href="https://www.facebook.com/profile.php?id=100089077755487" target="_blank" rel="noopener"><img src="{% static 'styles/images/logos-social/logo-facebook.svg' %}" alt="Logo facebook"></a>
+                <a href="https://www.instagram.com/maboutiquedereve/" target="_blank" rel="noopener"><img src="{% static 'styles/images/logos-social/logo-instagram.svg' %}" alt="Logo instagram"></a>
+              </div>
+            </div>
+            
+            
+            <!-- BOUTTON ET LOGO CENTRAL -->
+            <div class="footer-logo-newsletter">
+              <a href="signup.html" class="newsletter-button">S'inscrire à la newsletter</a>
+              <div class="footer-logo">
+                <img src="{% static 'styles/images/MA_BOUTIQUE_LOGO_Fond-Couleur.png' %}" alt="Logo boutique">
+                <p><em>N°Siret:</em> 89419864700022</p>
+              </div>
+            </div>
+            <!-- SECTION INFOS DROITE -->
+            <div class="footer-legal">
+              <h3>Informations</h3>
+              <a href="#">Politique de confidentialité</a>
+              <a href="#">Termes et conditions</a>
+              <a href="#">Politique de retour</a>
+              <a href="#">Guide des tailles</a>
+              <br>
+              <h3>Horaires Magasin</h3>
+              <select id="store-hours" class="custom-select">
+                <option value="0">Dimanche: Fermé</option>
+                <option value="1">Lundi: Fermé</option>
+                <option value="2">Mardi: 10h-12h30, 13h30-18h</option>
+                <option value="3">Mercredi: 10h-12h30, 13h30-18h</option>
+                <option value="4">Jeudi: 10h-12h30, 13h30-18h</option>
+                <option value="5">Vendredi: 10h-18h</option>
+                <option value="6">Samedi: 10h-18h</option>
+              </select>
+            </div>
+          </div>
+          <!-- COPYRIGHT BAS DE PAGE -->
+          <div class="footer-copyright-container">
+            <div class="footer-copyright">
+              <p>&copy; 2023 Ma boutique de rêve. Tous droits réservés.</p>
+            </div>
+          </div>
+        </footer>
+
+        <!-- ###################################################################################################
+             ###########################################  JavaScript  ##########################################
+             ################################################################################################### -->
+
+        <script src="{% static 'script/script.js' %}"></script>
+        <script src="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.js"></script>
+        <script>
+          AOS.init();
+        </script>
+  </body>
+</html>
