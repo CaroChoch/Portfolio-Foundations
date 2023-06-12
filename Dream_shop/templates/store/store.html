@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+  <div class="background">
+    <h1 class="page-title">Titre de la page</h1>
+    <div class="product-grid">
+      <!-- Répétez cette structure pour chaque produit -->
+      <div class="product-card">
+        <div class="product-image">
+          <div class="image-face front">
+            <img src="{% static 'styles/images/carrousel/men01.jpg' %}" alt="Nom du produit">
+          </div>
+          <div class="image-face back">
+            <img src="{% static 'styles/images/carrousel/men01.jpg' %}" alt="Nom du produit">
+          </div>
+        </div>
+        <h2 class="product-name">Nom du produit</h2>
+        <p class="product-price">€100.00</p>
+        <a class="product-details" href="#">Voir les détails</a>
+      </div>
+      <!-- Répétez pour chaque produit -->
+    </div>
+  </div>
+{% endblock %}
