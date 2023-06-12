@@ -62,27 +62,19 @@
     </section>
     <!-------------- SECTION NOS MEILLEURS VENTES ----------------->
     <section class="section-bestseller">
+       
       <h2  data-aos="fade-up" data-aos-duration="3000">Nos Meilleures Ventes</h2>
       <div class="product-grid">
+        {% for product in products %}
         <div class="product-card" data-aos="flip-left" data-aos-easing="ease-out-cubic" data-aos-duration="2000">
-            <img src="{% static 'styles/images/cartes/girl01.jpg' %}" alt="Produit Femme">
-            <h3 class="product-name">Best Seller Femme</h3>
-            <p class="product-price">100 €</p>
+            <img src="{{ product.images.url }}" alt="Produit Femme">
+            <h3 class="product-name">{{ product.product_name }}</h3>
+            <p class="product-price">{{ product.price }} €</p>
             <a href="#" class="product-button">Voir le produit</a>
         </div>
-        <div class="product-card" data-aos="fade-up" data-aos-duration="3000">
-            <img src="{% static 'styles/images/cartes/boy01.jpg' %}" alt="Produit Homme">
-            <h3 class="product-name">Best Seller Homme</h3>
-            <p class="product-price">84 €</p>
-            <a href="#" class="product-button">Voir le produit</a>
-        </div>
-        <div class="product-card" data-aos="flip-left" data-aos-easing="ease-out-cubic" data-aos-duration="2000">
-            <img src="{% static 'styles/images/cartes/sac.jpg' %}" alt="Accessoire">
-            <h3 class="product-name">Best Seller Accessoire</h3>
-            <p class="product-price">99 €</p>
-            <a href="#" class="product-button">Voir le produit</a>
-        </div>
+        {% endfor %}
     </div>
+   
     </section>
 
     <!-------------- SECTION A PROPOS -------------->
