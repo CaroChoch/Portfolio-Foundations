@@ -233,9 +233,12 @@
 
 /* Style pour un élément sticky */
 .sticky {
-  /* Positionnement fixe : l'élément reste en place même lorsque l'utilisateur fait défiler la page */
   position: fixed;
-  /* L'élément est placé tout en haut de la page */
-  top: 10px;
+  top: 0;
+  margin-top: 1px;
   width: 100%;
+}
+/* Element factice pour gérer la sticky bar */
+#dummy_nav {
+  height: 80px;
 }

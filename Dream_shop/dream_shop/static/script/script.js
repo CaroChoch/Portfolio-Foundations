@@ -3,28 +3,22 @@
    ###########################################  STICKY BAR  ##########################################
    ################################################################################################### */
 
-   window.onscroll = function() {myFunction()};
+window.onscroll = function () { myFunction() };
 
-   var navbar = document.getElementById("navbar_fix");
-   var sticky = navbar.offsetTop;
-   
-   // Créez un élément de remplacement pour la barre de navigation
-   var navbarPlaceholder = document.createElement('div');
-   navbarPlaceholder.style.display = 'none'; // Cachez l'élément de remplacement par défaut
-   navbar.parentNode.insertBefore(navbarPlaceholder, navbar); // Insérez l'élément de remplacement avant la navbar
-   
-   function myFunction() {
-     if (window.pageYOffset >= sticky) {
-       navbar.classList.add("sticky");
-       navbarPlaceholder.style.height = navbar.offsetHeight + 'px'; // Ajustez la hauteur quand la navbar est fixe
-       navbarPlaceholder.style.display = 'block'; // Montrez l'élément de remplacement quand la navbar est fixe
-     } else {
-       navbar.classList.remove("sticky");
-       navbarPlaceholder.style.height = '0px'; // Réinitialisez la hauteur quand la navbar n'est pas fixe
-       navbarPlaceholder.style.display = 'none'; // Cachez l'élément de remplacement quand la navbar n'est pas fixe
-     }
-   }
-   
+var navbar = document.getElementById("navbar_fix");
+var dummyNav = document.getElementById("dummy_nav");
+var sticky = navbar.offsetTop;
+
+function myFunction() {
+  if (window.pageYOffset >= sticky) {
+    navbar.classList.add("sticky");
+    dummyNav.style.display = "block";
+  } else {
+    navbar.classList.remove("sticky");
+    dummyNav.style.display = "none";
+  }
+}
+
 /* ###################################################################################################
    ##########################################  CAROUSEL  ##########################################
    ################################################################################################### */
