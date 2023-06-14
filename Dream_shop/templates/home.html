@@ -68,7 +68,7 @@
         {% for product in products %}
         <div class="product-card" data-aos="flip-left" data-aos-easing="ease-out-cubic" data-aos-duration="2000">
             <img src="{{ product.images.url }}" alt="Produit Femme">
-            <h3 class="product-name">{{ product.product_name }}</h3>
+            <h3 class="product-name">{{ product.title_online }}</h3>
             <p class="product-price">{{ product.price }} €</p>
             <a href="#" class="product-button">Voir le produit</a>
         </div>
