@@ -1,5 +1,5 @@
 from django.db import models
-from category.models import Category, Sub_Category
+from category.models import Category
 
 class Product(models.Model):
     """
@@ -14,7 +14,7 @@ class Product(models.Model):
     second_image = models.ImageField(upload_to='photos/products', blank=True, null=True) # Seconde image pour le reverse des produits de la collection complète
     stock = models.IntegerField(default=0)                                               # Stock disponible du produit (champ entier)
     is_available = models.BooleanField(default=True)                                     # Indicateur de disponibilité du produit (champ booléen avec valeur par défaut True)
-    category = models.ForeignKey(Sub_Category, on_delete=models.CASCADE)                     # Catégorie du produit (relation ForeignKey avec le modèle Category, suppression en cascade en cas de suppression de la catégorie)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)                     # Catégorie du produit (relation ForeignKey avec le modèle Category, suppression en cascade en cas de suppression de la catégorie)
     created_date = models.DateTimeField(auto_now_add=True)                               # Date de création du produit (remplie automatiquement lors de la création)
     modified_date = models.DateTimeField(auto_now=True)                                  # Date de modification du produit (mise à jour automatique lors de chaque modification)
 

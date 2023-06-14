@@ -29,15 +29,3 @@ class Category(models.Model):
         Renvoie une représentation en chaîne de caractères du nom de la catégorie.
         """
         return self.category_name
-
-
-class Sub_Category(models.Model):
-    category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True)
-    name = models.CharField(max_length=100)
-    category_online = models.CharField(max_length=50, default="")
-
-    class Meta:
-        ordering = ['name',] # ordre alphabetique
-
-    def __str__(self):
-        return self.name

@@ -1,6 +1,5 @@
 from django.contrib import admin
-from .models import Category, Sub_Category
-
+from .models import Category
 
 class CategoryAdmin(admin.ModelAdmin):
   """
@@ -11,5 +10,3 @@ class CategoryAdmin(admin.ModelAdmin):
 
 # Enregistrement du modèle Category sur le site d'administration.
 admin.site.register(Category, CategoryAdmin)
-admin.site.register(Sub_Category)
-
