@@ -1,10 +1,21 @@
 from django.db import models
+from django.urls import reverse
+
 
 GENDER_CHOICES = [
     ('H', 'Homme'),
     ('F', 'Femme'),
-    ('X', 'Autre'),
+    ('O', 'Autre'),
 ]
+
+PRODUCT_TYPE_CHOICES = [
+    ('Y', 'Accessoires Homme'),
+    ('X', 'Accessoires Femme'),
+    ('A', 'Vêtements Homme'),
+    ('B', 'Vêtements Femme'),
+    ('O', 'Autre'),
+]
+
 
 class Category(models.Model):
     """
@@ -16,6 +27,8 @@ class Category(models.Model):
     description     = models.TextField(max_length=255, blank=True)
     cat_image       = models.ImageField(upload_to='photos/categories', blank=True)
     gender          = models.CharField(max_length=1, choices=GENDER_CHOICES, default="")
+    product_type    = models.CharField(max_length=1, choices=PRODUCT_TYPE_CHOICES, default="")
+
 
     class Meta:
         """
@@ -23,6 +36,9 @@ class Category(models.Model):
         """
         verbose_name        = 'category'
         verbose_name_plural = 'categories'
+
+    def get_url(self):
+        return reverse('products_by_category', args=[self.slug])
 
     def __str__(self):
         """

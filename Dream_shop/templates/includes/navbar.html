@@ -28,91 +28,69 @@
                ################################################################################################### -->
           <nav class="nav-bar sticky-nav" id="navbar_fix">
             <ul class="menu">
-              <li><a href="#top-header">Accueil</a></li>
-              <li><a href="#">Femme</a>
+              <li>
+                <a href="#">Accueil</a>
+              </li>
+              <li>
+                <a href="#">Femme</a>
                 <ul>
-                  <li><a href="#">Vêtements</a>
+                  <li>
+                    <a href="#">Vêtements</a>
                     <ul>
-                      <li><a href="#">Tailles Classiques</a>
-                        <ul>
-                          <li><a href="#">Manteaux / Vestes</a></li>
-                          <li><a href="#">Pulls</a></li>
-                          <li><a href="#">Robes</a></li>
-                          <li><a href="#">Gilets</a></li>
-                          <li><a href="#">Jupes</a></li>
-                          <li><a href="#">Hauts / T-shirts</a></li>
-                          <li><a href="#">Jeans</a></li>
-                          <li><a href="#">Pantalons / Leggings</a></li>
-                          <li><a href="#">Shorts</a></li>
-                          <li><a href="#">Combinaisons / Combi-shorts</a></li>
-                          <li><a href="#">Maillots de bain</a></li>
-                        </ul>
+                      {% for category in women_links %}
+                      <li>
+                        <a href="{{ category.get_url }}">{{ category.category_online }}</a>
                       </li>
-                      <li><a href="#">Grande Taille</a>
-                        <ul>
-                          <li><a href="#">Manteaux / Vestes</a></li>
-                          <li><a href="#">Pulls</a></li>
-                          <li><a href="#">Robes</a></li>
-                          <li><a href="#">Gilets</a></li>
-                          <li><a href="#">Jupes</a></li>
-                          <li><a href="#">Hauts / T-shirts</a></li>
-                          <li><a href="#">Jeans</a></li>
-                          <li><a href="#">Pantalons / Leggings</a></li>
-                          <li><a href="#">Shorts</a></li>
-                          <li><a href="#">Maillots de bain</a></li>
-                        </ul>
-                      </li>
+                      {% endfor %}
                     </ul>
                   </li>
-                  <li><a href="#">Accessoires</a>
+                  <li>
+                    <a href="#">Accessoires</a>
                     <ul>
-                      <li><a href="#">Bijoux</a></li>
-                      <li><a href="#">Porte-monnaie</a></li>
-                      <li><a href="#">Ceintures</a></li>
-                      <li><a href="#">Foulards</a></li>
-                      <li><a href="#">Sacs</a></li>
+                      {% for category in women_acc %}
+                      <li>
+                        <a href="{{ category.get_url }}">{{ category.category_online }}</a>
+                      </li>
+                      {% endfor %}
                     </ul>
                   </li>
-                  <li><a href="#">Collection Complète</a></li>
+                  <li>
+                    <a href="{% url 'store' %}?gender=women">Collection Complète</a>
+                </li>
                 </ul>
               </li>
-              <li><a href="#">Homme</a>
+              <li>
+                <a href="#">Homme</a>
                 <ul>
-                  <li><a href="#">Vêtements</a>
+                  <li>
+                    <a href="#">Vêtements</a>
                     <ul>
-                      <li><a href="#">Tailles Classiques</a>
-                        <ul>
-                          <li><a href="#">Manteaux / Vestes</a></li>
-                          <li><a href="#">Hauts / T-shirts</a></li>
-                          <li><a href="#">Sweat-shirts / Pulls</a></li>
-                          <li><a href="#">Pantalons</a></li>
-                          <li><a href="#">Jeans</a></li>
-                          <li><a href="#">Shorts</a></li>
-                        </ul>
+                      {% for category in men_links %}
+                      <li>
+                        <a href="{{ category.get_url }}">{{ category.category_online }}</a>
                       </li>
-                      <li><a href="#">Grande Taille</a>
-                        <ul>
-                          <li><a href="#">Manteaux / Vestes</a></li>
-                          <li><a href="#">Hauts / T-shirts</a></li>
-                          <li><a href="#">Sweat-shirts / Pulls</a></li>
-                          <li><a href="#">Pantalons</a></li>
-                          <li><a href="#">Jeans</a></li>
-                          <li><a href="#">Shorts</a></li>
-                        </ul>
-                      </li>
+                      {% endfor %}
                     </ul>
                   </li>
-                  <li><a href="#">Accessoires</a>
+                  <li>
+                    <a href="#">Accessoires</a>
                     <ul>
-                      <li><a href="#">Sacoche</a></li>
-                      <li><a href="#">Ceintures</a></li>
-                      <li><a href="#">Portefeuille</a></li>
+                      {% for category in men_acc %}
+                      <li>
+                        <a href="{{ category.get_url }}">{{ category.category_online }}</a>
+                      </li>
+                      {% endfor %}
                     </ul>
                   </li>
-                  <li><a href="#">Collection Complète</a></li>
+                  <li>
+                    <a href="{% url 'store' %}?gender=men">Collection Complète</a>
+                  </li>
+                
                 </ul>
               </li>
-              <li><a href="#contact_section">Contact</a></li>
+              <li>
+                <a href="#contact_section">Contact</a>
+              </li>
             </ul>
             <!-- ###################################################################################################
                  ##########################################  SEARCH BAR  ###########################################

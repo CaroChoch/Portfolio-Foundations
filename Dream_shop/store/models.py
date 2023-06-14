@@ -17,6 +17,7 @@ class Product(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE)                     # Catégorie du produit (relation ForeignKey avec le modèle Category, suppression en cascade en cas de suppression de la catégorie)
     created_date = models.DateTimeField(auto_now_add=True)                               # Date de création du produit (remplie automatiquement lors de la création)
     modified_date = models.DateTimeField(auto_now=True)                                  # Date de modification du produit (mise à jour automatique lors de chaque modification)
+    
 
     def __str__(self):
         """
