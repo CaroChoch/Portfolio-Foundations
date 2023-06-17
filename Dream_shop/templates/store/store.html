@@ -11,13 +11,13 @@
     {% for product in products %}
     <!-- Répétez cette structure pour chaque produit -->
     <div class="product-card">
-      <div class="product-image">
+      <div class="product-image {% if product.second_image %}has-second-image{% else %}no-second-image{% endif %}">
         <div class="image-face {% if product.second_image %}front{% endif %}">
-          <img src="{{ product.images.url }}" alt="Vêtement de face">
+          <img src="{{ product.images.url }}" alt="image de vêtement de face">
         </div>
         {% if product.second_image %}
         <div class="image-face back">
-          <img src="{{ product.second_image.url }}" alt="Vêtement de dos">
+          <img src="{{ product.second_image.url }}" alt="image de vêtement de dos">
         </div>
         {% endif %}
       </div>

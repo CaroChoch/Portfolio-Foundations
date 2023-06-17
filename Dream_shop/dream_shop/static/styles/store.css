@@ -7,6 +7,7 @@
   font-family: 'Ananda', arial, cursive, sans-serif;
   padding: 50px;
 }
+
 /* Configuration de la grille de produits */
 .product-grid {
   display: flex;
@@ -15,6 +16,7 @@
   padding: 20px;
   text-align: center;
 }
+
 /* Configuration de la carte du produit */
 .product-card {
   margin-left: auto;
@@ -31,6 +33,7 @@
   transition: transform 0.2s ease-in-out;
   vertical-align: top;
 }
+
 /* Configuration de l'image du produit */
 .product-image {
   width: 100%;
@@ -41,6 +44,7 @@
   position: relative;
   overflow: hidden;
 }
+
 /* Configuration de la face avant et arrière de l'image du produit */
 .image-face {
   position: absolute;
@@ -49,32 +53,32 @@
   backface-visibility: hidden;
   transition: transform 0.6s linear;
 }
+
 /* Configuration de l'image dans la face de l'image du produit */
 .image-face img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
+
 /* Configuration de la face avant de l'image */
 .front {
   transform: rotateY(0deg);
 }
+
 /* Configuration de la face arrière de l'image */
 .back {
   transform: rotateY(180deg);
 }
+
 /* Configuration de l'animation de rotation au survol de l'image du produit */
-.product-card:hover .front {
-  {% if product.second_image %}
-    transform: rotateY(-180deg);
-  {% endif %}
+.product-image.has-second-image:hover .front {
+  transform: rotateY(-180deg);
 }
 
 /* Configuration de l'animation de rotation au survol de l'image du produit sans deuxième image */
-.product-card:hover .back {
-  {% if not product.second_image %}
-    transform: rotateY(0deg);
-  {% endif %}
+.product-image.no-second-image:hover .back {
+  transform: rotateY(0deg);
 }
 
 /* Configuration du nom du produit */
@@ -84,6 +88,7 @@
   margin-top: 15px;
   font-family: 'Ananda', arial, cursive, sans-serif;
 }
+
 /* Configuration du prix du produit */
 .product-price {
   color: #315D68;
@@ -91,6 +96,7 @@
   margin-top: 10px;
   font-weight: 300;
 }
+
 /* Configuration boutton des détails du produit */
 .product-details {
   display: inline-block;
@@ -105,11 +111,13 @@
   border-radius: 25px;
   transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
 }
+
 /* Configuration des détails du produit au survol */
 .product-details:hover {
   background-color: #1a2e45;
   color: #ffffff;
 }
+
 /* Style pour le compteur de produits */
 .product_count {
   font-family: 'Ananda';
@@ -121,6 +129,7 @@
   font-size: 40px;
   text-align: center;
 }
+
 /* Style pour les éléments <b> dans .product_count */
 .product_count b {
   font-family: Arial, Helvetica, sans-serif;
