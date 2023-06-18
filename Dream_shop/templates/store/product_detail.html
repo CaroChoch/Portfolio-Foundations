@@ -4,34 +4,66 @@
 {% block content %}
 
 <div class="product-card-detail">
-        <div class="product-image-detail">
-            <img src="{{ single_product.images.url }}" alt="Nom de l'article">
-        </div>
-        <div class="product-info-detail">
-            <h2>{{ single_product.title_online}}</h2>
-            <h3>{{ single_product.price|floatformat:2 }}</h3>
-            <p>{{ single_product.description }}</p>
-            <div class="select-quantity-detail">
-                <div>
-                    <label for="product-size">Taille:</label>
-                    <select id="product-size" name="product-size">
-                        <option value="small">Small</option>
-                        <option value="medium">Medium</option>
-                        <option value="large">Large</option>
-                        <option value="xlarge">XLarge</option>
-                    </select>
-                </div>
-                <div>
-                    <label for="product-quantity">Quantité:</label>
-                    <input type="number" id="product-quantity" name="product-quantity" min="1" max="10">
-                </div>
-            </div>
-            {% if single_product.stock <= 0 %}
-                <h5 class="text-danger">Rupture De Stock</h5>
-            {% else %}
-                <button type="button">Ajouter au panier</button>
+    <div class="product-image-detail">
+        <img id="product-main-image" src="{{ single_product.images.url }}" alt="Image de l'article">
+        <div class="product-thumbnails">
+            {% if single_product.second_image %}
+            <img class="product-thumbnail" src="{{ single_product.second_image.url }}" alt="Image 2 de l'article">
+            {% endif %}
+            {% if single_product.third_image %}
+            <img class="product-thumbnail" src="{{ single_product.third_image.url }}" alt="Image 3 de l'article">
+            {% endif %}
+            {% if single_product.fourth_image %}
+            <img class="product-thumbnail" src="{{ single_product.fourth_image.url }}" alt="Image 4 de l'article">
+            {% endif %}
+            {% if single_product.fifth_image %}
+            <img class="product-thumbnail" src="{{ single_product.fifth_image.url }}" alt="Image 5 de l'article">
             {% endif %}
         </div>
     </div>
+
+    <div class="product-info-detail">
+        <h2>{{ single_product.title_online}}</h2>
+        <h3>{{ single_product.price|floatformat:2 }}</h3>
+        <p>{{ single_product.description }}</p>
+        <div class="select-quantity-detail">
+            <div>
+                <label for="product-size">Taille:</label>
+                <select id="product-size" name="product-size">
+                    <option value="small">Small</option>
+                    <option value="medium">Medium</option>
+                    <option value="large">Large</option>
+                    <option value="xlarge">XLarge</option>
+                </select>
+            </div>
+            <div>
+                <label for="product-quantity">Quantité:</label>
+                <input type="number" id="product-quantity" name="product-quantity" min="1" max="10">
+            </div>
+        </div>
+        {% if single_product.stock <= 0 %} <h5 class="text-danger">Rupture De Stock</h5>
+            {% else %}
+            <button type="button">Ajouter au panier</button>
+            {% endif %}
+    </div>
+</div>
+<!-- Click sur les differentes vignettes -->
+<script>
+    window.addEventListener('load', function () {
+        var thumbnails = document.getElementsByClassName('product-thumbnail');
+
+        for (var i = 0; i < thumbnails.length; i++) {
+            thumbnails[i].addEventListener('click', function () {
+                var mainImage = document.querySelector('#product-main-image');
+                var mainImageUrl = mainImage.src;
+
+                var thumbnailImageUrl = this.src;
+
+                mainImage.src = thumbnailImageUrl;
+                this.src = mainImageUrl;
+            });
+        }
+    });
+</script>
 
 {% endblock %}

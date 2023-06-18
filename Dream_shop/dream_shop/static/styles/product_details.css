@@ -12,7 +12,7 @@
   position: relative;
   display: flex;
   margin: auto;
-  width: 65%;
+  width: 55%;
   background-color: rgba(255, 255, 255, 0.7); 
   border: 8px solid #315D68;
   border-radius: 20px;
@@ -20,13 +20,16 @@
   inset -5px -5px 15px rgba(255, 255, 255, 0.1),
   inset 5px 5px 15px rgba(49, 93, 104, 0.8);
   padding: 40px;
+  padding-bottom: 95px;
   margin-top: 50px;
   margin-bottom: 50px;
   gap: 20px;
 }
 /* Classe pour l'image du produit */
 .product-image-detail {
-  flex: 40%;
+  flex: 45%;
+  /* height: 45em; pour bloquer le hauter de l'image */
+  padding-bottom: 50px;
 }
 /* Classe pour le style de l'image elle-même */
 .product-image-detail img {
@@ -40,11 +43,11 @@
   flex: 60%;
   display: flex;
   flex-direction: column;
-  justify-content: space-around; /* Ajout de cette propriété */
+  justify-content: space-around;
   gap: 10px;
-  background: rgba(49, 93, 104, 0.1); /* Ajouter une couleur d'arrière-plan légère */
-  border-left: 5px solid #315D68; /* Ajouter une bordure sur le côté */
-  padding-left: 20px; /* Ajouter un peu d'espace à gauche pour éviter que le texte ne touche la bordure */
+  background: rgba(49, 93, 104, 0.1);
+  border-left: 5px solid #315D68;
+  padding-left: 20px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 /* Classe pour le titre du produit (nom) */
@@ -93,6 +96,7 @@
   padding: 10px;
   border-radius: 10px;
 }
+/* Classe pour l'input de type "number" */
 .product-info-detail input[type="number"] {
   height: 1px;
 }
@@ -132,8 +136,7 @@
   background: #1a2e45;
   color: #ffffff;
 }
-
-
+/* Styles communs pour les titres, paragraphes et conteneur de quantité */
 .product-info-detail h2,
 .product-info-detail h3,
 .product-info-detail p,
@@ -142,27 +145,42 @@
   padding-bottom: 15px;
   margin-bottom: 15px;
 }
-
-.product-info-detail h2,
-.product-info-detail h3,
-.product-info-detail p,
-.select-quantity-detail {
-  margin-bottom: 25px;
-}
-
+/* Styles spécifiques pour les titres */
 .product-info-detail h2:before {
   content: "\f06b";
   font-family: FontAwesome;
   margin-right: 10px;
   padding-right: 20px;
 }
+/* Styles spécifiques pour les sous-titres */
 .product-info-detail h3:before {
   content: "\f153"; 
   font-family: FontAwesome;
   margin-right: 10px;
   padding-right: 20px;
 }
-
+/* Styles pour le conteneur de quantité */
 .select-quantity-detail > div {
   flex: 1;
+}
+/* Styles pour les images des vignettes */
+.product-thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+/* Styles pour le conteneur des vignettes */
+.product-thumbnails {
+  display: flex;
+  justify-content: flex-start;
+  gap: 10px;
+}
+/* Styles pour chaque vignette */
+.product-thumbnail {
+  flex: 1;
+  max-width: 20%;
+  max-height: 100px;
+  margin-top: 10px;
+  height: auto;
+  object-fit: cover;
 }

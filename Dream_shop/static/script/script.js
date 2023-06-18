@@ -55,4 +55,3 @@ var dayOfWeek = new Date().getDay();
 // Sélectionnez l'option correspondante dans le sélecteur "store-hours"
 var storeHoursSelector = document.getElementById("store-hours");
 storeHoursSelector.selectedIndex = dayOfWeek;
-

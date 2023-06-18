@@ -52,4 +52,3 @@
     var storeHoursSelector = document.getElementById("store-hours");
     storeHoursSelector.selectedIndex = dayOfWeek;
   })();
-

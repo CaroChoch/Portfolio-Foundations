@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="cart-container">
+  <h3 class="title-cart">Panier d'achat</h3>
+  <table class="cart-table">
+    <thead>
+      <tr>
+        <th>Produit</th>
+        <th>Nom</th>
+        <th>Quantité</th>
+        <th>Taille</th>
+        <th>Prix Unitaire</th>
+        <th>Prix Total</th>
+        <th>Supprimer</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><img class="product-img" src="img_url" alt="product image"></td>
+        <td><a href="#">Nom du produit</a></td>
+        <td>
+          <div class="input-wrapper">
+            <input type="number" min="1" value="1">
+          </div>
+        </td>
+        <td>S</td>
+        <td>10€</td>
+        <td>10€</td>
+        <td><button class="delete-button">🗑️</button></td>
+      </tr>
+      <!-- Add more product rows as necessary -->
+    </tbody>
+  </table>
+</div>
+<div class="cart-wrapper">
+  <div class="cart-summary">
+    <h4>Résumé du panier</h4>
+    <div class="summary-item">
+      <p>Sous-total : </p><span>20€</span>
+    </div>
+    <div class="summary-item">
+      <p>Code de réduction :</p>
+      <input type="text" id="discountCode" name="discountCode">
+    </div>
+    <div class="summary-item">
+      <p>Option de livraison : </p><span>Standard (5€)</span>
+    </div>
+    <div class="summary-item">
+      <p>Total provisoire : </p><span>25€</span>
+    </div>
+    <div class="summary-item">
+      <p>Taxes : </p><span>5€</span>
+    </div>
+    <div class="summary-item total">
+      <p>Total final : </p><span>30€</span>
+    </div>
+    <div class="checkout-buttons">
+      <button type="button">Continuer les achats</button>
+      <button type="button">Passer à la caisse</button>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

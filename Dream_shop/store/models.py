@@ -13,6 +13,9 @@ class Product(models.Model):
     price = models.FloatField(default=0.0)                                               # Prix du produit (champ entier)
     images = models.ImageField(upload_to='photos/products', blank=True, null=True)       # Images du produit (champ pour télécharger une image, stockée dans le répertoire 'photos/products')
     second_image = models.ImageField(upload_to='photos/products', blank=True, null=True) # Seconde image pour le reverse des produits de la collection complète
+    third_image = models.ImageField(upload_to='photos/products', blank=True, null=True)
+    fourth_image = models.ImageField(upload_to='photos/products', blank=True, null=True)
+    fifth_image = models.ImageField(upload_to='photos/products', blank=True, null=True)
     stock = models.IntegerField(default=0)                                               # Stock disponible du produit (champ entier)
     is_available = models.BooleanField(default=True)                                     # Indicateur de disponibilité du produit (champ booléen avec valeur par défaut True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)                     # Catégorie du produit (relation ForeignKey avec le modèle Category, suppression en cascade en cas de suppression de la catégorie)
