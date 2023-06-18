@@ -9,17 +9,22 @@
 }
 /* Configuration de la grille de produits */
 .product-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
   padding: 20px;
-  text-align: center;  
+  text-align: center;
 }
 /* Configuration de la carte du produit */
 .product-card {
+  margin-left: auto;
+  margin-right: auto;
   display: inline-block;
   width: 350px;
   background: rgba(255, 255, 255, 0.7);
   border-radius: 20px;
   padding: 20px;
-  margin: 20px;
+  margin-top: 80px;
   border: 1px solid whitesmoke;
   box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.1);
   text-align: center;
@@ -59,13 +64,19 @@
   transform: rotateY(180deg);
 }
 /* Configuration de l'animation de rotation au survol de l'image du produit */
-.product-image:hover .front {
-  transform: rotateY(-180deg);
+.product-card:hover .front {
+  {% if product.second_image %}
+    transform: rotateY(-180deg);
+  {% endif %}
 }
-/* Configuration de l'animation de rotation au survol de l'image du produit */
-.product-image:hover .back {
-  transform: rotateY(0deg);
+
+/* Configuration de l'animation de rotation au survol de l'image du produit sans deuxième image */
+.product-card:hover .back {
+  {% if not product.second_image %}
+    transform: rotateY(0deg);
+  {% endif %}
 }
+
 /* Configuration du nom du produit */
 .product-name {
   color: #315D68;
@@ -98,4 +109,20 @@
 .product-details:hover {
   background-color: #1a2e45;
   color: #ffffff;
+}
+/* Style pour le compteur de produits */
+.product_count {
+  font-family: 'Ananda';
+  color: #315D68;
+  letter-spacing: 2px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 40px;
+  text-align: center;
+}
+/* Style pour les éléments <b> dans .product_count */
+.product_count b {
+  font-family: Arial, Helvetica, sans-serif;
+  margin-left: 5px;
 }

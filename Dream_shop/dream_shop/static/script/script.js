@@ -2,51 +2,54 @@
 /* ###################################################################################################
    ###########################################  STICKY BAR  ##########################################
    ################################################################################################### */
-
-window.onscroll = function () { myFunction() };
-
-var navbar = document.getElementById("navbar_fix");
-var dummyNav = document.getElementById("dummy_nav");
-var sticky = navbar.offsetTop;
-
-function myFunction() {
-  if (window.pageYOffset >= sticky) {
-    navbar.classList.add("sticky");
-    dummyNav.style.display = "block";
-  } else {
-    navbar.classList.remove("sticky");
-    dummyNav.style.display = "none";
-  }
-}
-
+   
+   (function() {
+    window.onscroll = function() {myFunction()};
+  
+    var navbar = document.getElementById("navbar_fix");
+    var dummyNav = document.getElementById("dummy_nav");
+    var sticky = navbar.offsetTop;
+  
+    function myFunction() {
+      if (window.pageYOffset >= sticky) {
+        navbar.classList.add("sticky");
+        dummyNav.style.display = "block";
+      } else {
+        navbar.classList.remove("sticky");
+        dummyNav.style.display = "none";
+      }
+    }
+  })();
+   
+   
 /* ###################################################################################################
    ##########################################  CAROUSEL  ##########################################
    ################################################################################################### */
 
-(function() {
-  function nextSlide() {
-    let lists = document.querySelectorAll('.item');
-    document.getElementById('slide').appendChild(lists[0]);
-  }
-
-  function prevSlide() {
-    let lists = document.querySelectorAll('.item');
-    document.getElementById('slide').prepend(lists[lists.length - 1]);
-  }
-
-  document.getElementById('next-01').addEventListener('click', nextSlide);
-  document.getElementById('prev-01').addEventListener('click', prevSlide);
-
-  setInterval(nextSlide, 5000);
-})();
+   (function() {
+    function nextSlide() {
+      let lists = document.querySelectorAll('.item');
+      document.getElementById('slide').appendChild(lists[0]);
+    }
+  
+    function prevSlide() {
+      let lists = document.querySelectorAll('.item');
+      document.getElementById('slide').prepend(lists[lists.length - 1]);
+    }
+  
+    document.getElementById('next-01').addEventListener('click', nextSlide);
+    document.getElementById('prev-01').addEventListener('click', prevSlide);
+  
+    setInterval(nextSlide, 5000);
+  })();
 
 /* ###################################################################################################
    ###########################################  AUTO HOURS  ##########################################
    ################################################################################################### */
 
-// le jour de la semaine actuel (0 pour dimanche, 1 pour lundi, etc.)
-var dayOfWeek = new Date().getDay();
-// Sélectionnez l'option correspondante dans le sélecteur "store-hours"
-var storeHoursSelector = document.getElementById("store-hours");
-storeHoursSelector.selectedIndex = dayOfWeek;
+   (function() {
+    var dayOfWeek = new Date().getDay();
+    var storeHoursSelector = document.getElementById("store-hours");
+    storeHoursSelector.selectedIndex = dayOfWeek;
+  })();
 

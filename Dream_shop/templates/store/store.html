@@ -3,30 +3,29 @@
 {% load static %}
 
 {% block content %}
-
 <div class="background-store">
-  <h1 class="page-title">Collection Complète</h1>
+  <h1 class="page-title">
+    {{ page_title }}
+  </h1>
   <span class="product_count">Total articles :<b>{{ product_count }}</b></span>
   <div class="product-grid">
     {% for product in products %}
-    <!-- Répétez cette structure pour chaque produit -->
-    <div class="product-card">
-      <div class="product-image {% if product.second_image %}has-second-image{% else %}no-second-image{% endif %}">
-        <div class="image-face {% if product.second_image %}front{% endif %}">
-          <img src="{{ product.images.url }}" alt="image de vêtement de face">
-        </div>
-        {% if product.second_image %}
-        <div class="image-face back">
-          <img src="{{ product.second_image.url }}" alt="image de vêtement de dos">
-        </div>
-        {% endif %}
+    <div class="product-card{% if not product.second_image %} no-second-image{% endif %}">
+      <div class="product-image">
+          <div class="image-face front">
+              <img src="{{ product.images.url }}" alt="Vêtement de face">
+          </div>
+          {% if product.second_image %}
+          <div class="image-face back">
+              <img src="{{ product.second_image.url }}" alt="Vêtement de dos">
+          </div>
+          {% endif %}
       </div>
       <h2 class="product-name">{{ product.title_online }}</h2>
-      <p class="product-price">€ {{ product.price }}</p>
-      <a class="product-details" href="#">Voir les détails</a>
+      <p class="product-price">€ {{ product.price|floatformat:2 }}</p>
+      <a class="product-details" href="{{ product.get_url }}">Voir les détails</a>
     </div>
     {% endfor %}
   </div>
 </div>
-
 {% endblock %}

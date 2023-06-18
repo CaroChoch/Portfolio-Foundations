@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="product-card-detail">
+        <div class="product-image-detail">
+            <img src="{{ single_product.images.url }}" alt="Nom de l'article">
+        </div>
+        <div class="product-info-detail">
+            <h2>{{ single_product.title_online}}</h2>
+            <h3>{{ single_product.price|floatformat:2 }}</h3>
+            <p>{{ single_product.description }}</p>
+            <div class="select-quantity-detail">
+                <div>
+                    <label for="product-size">Taille:</label>
+                    <select id="product-size" name="product-size">
+                        <option value="small">Small</option>
+                        <option value="medium">Medium</option>
+                        <option value="large">Large</option>
+                        <option value="xlarge">XLarge</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="product-quantity">Quantité:</label>
+                    <input type="number" id="product-quantity" name="product-quantity" min="1" max="10">
+                </div>
+            </div>
+            {% if single_product.stock <= 0 %}
+                <h5 class="text-danger">Rupture De Stock</h5>
+            {% else %}
+                <button type="button">Ajouter au panier</button>
+            {% endif %}
+        </div>
+    </div>
+
+{% endblock %}

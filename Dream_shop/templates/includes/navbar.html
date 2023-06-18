@@ -32,10 +32,10 @@
         <a href="{% url 'home' %}">Accueil</a>
       </li>
       <li>
-        <a href="#">Femme</a>
+        <a href="{% url 'store' %}?gender=women">Femme</a>
         <ul>
           <li>
-            <a href="#">Vêtements</a>
+            <a href="{% url 'store' %}?gender=women&category=clothingWomen">Vêtements</a>
             <ul>
               {% for category in women_links %}
               <li>
@@ -45,7 +45,7 @@
             </ul>
           </li>
           <li>
-            <a href="#">Accessoires</a>
+            <a href="{% url 'store' %}?gender=women&category=clothingAccessWomen">Accessoires</a>
             <ul>
               {% for category in women_acc %}
               <li>
@@ -60,10 +60,10 @@
         </ul>
       </li>
       <li>
-        <a href="#">Homme</a>
+        <a href="{% url 'store' %}?gender=men">Homme</a>
         <ul>
           <li>
-            <a href="#">Vêtements</a>
+            <a href="{% url 'store' %}?gender=men&category=clothingMen">Vêtements</a>
             <ul>
               {% for category in men_links %}
               <li>
@@ -73,7 +73,7 @@
             </ul>
           </li>
           <li>
-            <a href="#">Accessoires</a>
+            <a href="{% url 'store' %}?gender=men&category=clothingAccessMen">Accessoires</a>
             <ul>
               {% for category in men_acc %}
               <li>

@@ -6,10 +6,6 @@ def store(request, category_slug=None):
     """
     Vue pour afficher la page principale du magasin.
 
-    Si un slug de catégorie est fourni, cette vue filtrera les produits
-    en fonction de cette catégorie. Sinon, tous les produits disponibles
-    seront affichés.
-
     Arguments:
     request -- Requête HTTP
     category_slug -- Slug de la catégorie (par défaut: None)
@@ -17,10 +13,12 @@ def store(request, category_slug=None):
     Retourne:
     Réponse HTTP avec le rendu de la page du magasin
     """
-
+    # Initialiser les variables
     categories = None
     products = None
+    page_title = "Collection Complète"
 
+    # Récupérer les liens des catégories par genre et type de produit
     women_links = Category.objects.filter(product_type='B')
     men_links = Category.objects.filter(product_type='A')
     women_acc = Category.objects.filter(product_type='X')
@@ -38,21 +36,38 @@ def store(request, category_slug=None):
         
         # Compter le nombre de produits disponibles dans cette catégorie
         product_count = products.count()
+        page_title = categories.category_name
     else:
         # Si aucun slug de catégorie n'est fourni, récupérer tous les produits disponibles
         products = Product.objects.filter(is_available=True)
 
-        # Filtrer les produits par genre (homme ou femme)
+        # Filtrer les produits par genre (homme ou femme) et par type de produit
         gender = request.GET.get('gender')
+        category = request.GET.get('category')
         if gender == 'men':
             products = products.filter(category__gender='H')
+            page_title = "Collection Homme"
         elif gender == 'women':
             products = products.filter(category__gender='F')
+            page_title = "Collection Femme"
         
+        if category == 'clothingMen':
+            products = products.filter(category__product_type='A')
+            page_title = "Vêtements Homme"
+        elif category == 'clothingWomen':
+            products = products.filter(category__product_type='B')
+            page_title = "Vêtements Femme"
+        elif category == 'clothingAccessMen':
+            products = products.filter(category__product_type='Y')
+            page_title = "Accessoires Homme"
+        elif category == 'clothingAccessWomen':
+            products = products.filter(category__product_type='X')
+            page_title = "Accessoires Femme"
+
         # Compter le nombre total de produits disponibles
         product_count = products.count()
 
-    # Créer le contexte avec les produits et le nombre de produits
+    # Créer le contexte avec les produits, le nombre de produits et le titre de la page
     context = {
         'products': products,
         'product_count': product_count,
@@ -60,7 +75,52 @@ def store(request, category_slug=None):
         'women_acc': women_acc,
         'men_links': men_links,
         'men_acc': men_acc,
+        'men_links_all': men_links_all,
+        'women_links_all': women_links_all,
+        'page_title': page_title,
     }
 
     # Rendre la page du magasin avec le contexte créé
     return render(request, 'store/store.html', context)
+
+
+
+def product_detail(request, category_slug, product_slug):
+    """
+    Vue pour afficher le détail d'un produit spécifique.
+
+    Arguments:
+    request -- Requête HTTP
+    category_slug -- Slug de la catégorie du produit
+    product_slug -- Slug du produit
+
+    Retourne:
+    Réponse HTTP avec le rendu de la page de détail du produit
+    """
+    try:
+        # Récupérer le produit spécifique ou lever une exception si il n'existe pas
+        single_product = Product.objects.get(category__slug=category_slug, slug=product_slug)
+    except Exception as e:
+        raise e
+
+    # Récupérer les liens des catégories par genre et type de produit
+    women_links = Category.objects.filter(product_type='B')
+    men_links = Category.objects.filter(product_type='A')
+    women_acc = Category.objects.filter(product_type='X')
+    men_acc = Category.objects.filter(product_type='Y')
+    men_links_all = Category.objects.filter(gender='H')
+    women_links_all = Category.objects.filter(gender='F')
+
+    # Créer le contexte avec le produit et les liens des catégories
+    context = {
+        'single_product': single_product,
+        'women_links': women_links,
+        'women_acc': women_acc,
+        'men_links': men_links,
+        'men_acc': men_acc,
+        'men_links_all': men_links_all,
+        'women_links_all': women_links_all,
+    }
+
+    # Rendre la page de détail du produit avec le contexte créé
+    return render(request, 'store/product_detail.html', context)
