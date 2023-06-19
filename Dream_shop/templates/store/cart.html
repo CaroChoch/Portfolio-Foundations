@@ -33,7 +33,7 @@
         {% for cart_item in cart_items %}
         <tr>
           <td><img class="product-img" src="{{ cart_item.product.images.url }}" alt="product image"></td>
-          <td><a href="#">{{ cart_item.product.title_online }}</a></td>
+          <td><a href="{{ cart_item.product.get_url }}" class="link-name">{{ cart_item.product.title_online }}</a></td>
           <td>
             <div class="quantity-buttons">
               <a href="{% url 'remove_cart' cart_item.product.id %}" class="button-cart1" style="text-decoration: none;">
@@ -94,6 +94,7 @@
 
 
 <script>
+  
   function incrementQuantity(buttonElement) {
     var quantitySpan = buttonElement.parentElement.querySelector('.product-quantity');
     var currentQuantity = parseInt(quantitySpan.innerText);
@@ -107,6 +108,7 @@
       quantitySpan.innerText = currentQuantity - 1;
     }
   }
+
 </script>
 
 {% endblock %}

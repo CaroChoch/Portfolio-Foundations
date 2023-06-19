@@ -117,7 +117,7 @@
   width: 40%;
 }
 /* Classe pour le bouton d'achat */
-.product-info-detail button {
+.product-info-detail .btn-detail {
   border: none;
   padding: 15px 0;
   font-size: 1.5em;
@@ -132,9 +132,53 @@
   border-radius: 5px;
 } 
 /* Classe pour le bouton d'achat lorsqu'il est survolé */
-.product-info-detail button:hover {
+.product-info-detail .btn-detail:hover {
   background: #1a2e45;
   color: #ffffff;
+}
+.product-info-detail .btn-detail i {
+  padding-left: 20px;
+  color: white;
+}
+.product-info-detail .already-cart {
+  border: none;
+  padding: 15px 0;
+  font-size: 1.5em;
+  color: #fff;
+  background: green;
+  cursor: pointer;
+  font-family: 'Ananda';
+  letter-spacing: 0.15em;
+  width: 97%;
+  font-size: 18px;
+  border-radius: 5px;
+}
+.product-info-detail .already-cart i {
+  padding-left: 20px;
+  color: white;
+}
+.product-info-detail .see-cart {
+  border: none;
+  padding: 15px 0;
+  font-size: 1.5em;
+  color: #fff;
+  background: #315D68;
+  cursor: pointer;
+  font-family: 'Ananda';
+  letter-spacing: 0.15em;
+  transition: background 0.2s ease-in-out, color 0.2s ease-in-out;
+  width: 97%;
+  font-size: 18px;
+  border-radius: 5px;
+} 
+.product-info-detail .see-cart:hover {
+  background: #1a2e45;
+  color: #ffffff;
+} 
+.product-info-detail .see-cart i {
+  padding-left: 20px;
+  color: white;
+
 }
 /* Styles communs pour les titres, paragraphes et conteneur de quantité */
 .product-info-detail h2,

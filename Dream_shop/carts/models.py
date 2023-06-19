@@ -48,4 +48,4 @@ class CartItem(models.Model):
     """
     Renvoie une représentation textuelle de l'article.
     """
-    return self.product
+    return str(self.product)
