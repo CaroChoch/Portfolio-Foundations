@@ -3,7 +3,25 @@
   margin-top: 40px;
   background-color: rgba(255, 255, 255, 0.7); 
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: space-between;
 }
+.scrollable-cart-items {
+  max-height: 60vh; /* Ajustez cette valeur en fonction de vos besoins */
+  overflow-y: auto;
+}
+.scrollable-cart-items {
+  max-height: 65vh;
+  overflow-y: auto;
+}
+.cart-table th {
+  position: sticky;
+  top: 0;
+  /* autres styles */
+  background-color: white; /* Ajoutez une couleur de fond pour éviter que le texte de la ligne ne soit visible lors du défilement */
+  z-index: 10; /* pour s'assurer que l'en-tête reste au-dessus du contenu du tableau lors du défilement */
+}
+
 /* Style pour le titre du panier */
 .title-cart {
   text-align: center;
@@ -57,21 +75,23 @@
   text-shadow: 0 0 5px pink, 0 0 10px rgb(220, 146, 159), 0 0 15px pink, 0 0 20px pink;
   cursor: pointer;
 }
+
 /* Styles pour le résumé du panier */
 .cart-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 20px;
+  padding: 40px;
+  margin-top: 25%;
 }
 /* Styles pour le conteneur du résumé du panier */
 .cart-summary {
-  padding: 30px;
+  padding: 40px;
   border: 1px solid #ddd;
   border-radius: 10px;
   background-color: #f6f6f6;
-  margin-bottom: 30px;
-  width: 30%;
+
+  width: 80%;
 }
 /* Styles pour le titre du résumé du panier */
 .cart-summary h4 {
@@ -79,6 +99,7 @@
   font-weight: 600;
   color: #315D68;
   font-size: 1.5em;
+  text-align: center;
 }
 /* Styles pour chaque élément du résumé du panier */
 .cart-summary .summary-item {
