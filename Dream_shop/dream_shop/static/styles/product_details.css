@@ -130,7 +130,7 @@
   width: 97%;
   font-size: 18px;
   border-radius: 5px;
-}
+} 
 /* Classe pour le bouton d'achat lorsqu'il est survolé */
 .product-info-detail button:hover {
   background: #1a2e45;

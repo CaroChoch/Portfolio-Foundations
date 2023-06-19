@@ -1,5 +1,6 @@
 /* Styles pour le conteneur du panier */
 .cart-container {
+  margin-top: 40px;
   background-color: rgba(255, 255, 255, 0.7); 
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
 }
@@ -38,18 +39,7 @@
   font-size: 20px;
   text-align: center;
 }
-/* Styles pour l'input wrapper */
-.input-wrapper {
-  height: 20px;
-  font-size: 18px;
-}
-/* Styles pour l'input quantité */
-.input-wrapper input {
-  height: 100%;
-  font-size: 20px;
-  width: 80px;
-  text-align: center;
-}
+
 /* Styles pour l'icône de suppression */
 .delete-button {
   font-size: 16px;
@@ -139,6 +129,38 @@
 }
 /* Styles pour le survol des boutons de validation */
 .checkout-buttons button:hover {
+  background-color: #1a2e45;
+  color: #fff;
+}
+
+.empty-cart{
+  text-align: center;
+  color: #315D68;
+  font-size: 40px;
+  margin-top: 100px;
+  letter-spacing: 2px;
+  font-family: 'Ananda';
+}
+.btn-cart {
+  display: flex;
+  justify-content: center;
+  margin-right: auto;
+  margin-left: auto;
+  width: 10%;
+  margin-bottom: 90px;
+  align-items: center;
+  text-align: center;
+  padding: 10px 20px;
+  text-decoration: none;
+  background-color: #315D68;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1.1em;
+  transition: background 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+.btn-cart:hover {
   background-color: #1a2e45;
   color: #fff;
 }

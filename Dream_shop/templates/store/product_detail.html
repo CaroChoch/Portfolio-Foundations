@@ -43,7 +43,9 @@
         </div>
         {% if single_product.stock <= 0 %} <h5 class="text-danger">Rupture De Stock</h5>
             {% else %}
-            <button type="button">Ajouter au panier</button>
+            <a href="{% url 'add_cart' single_product.id %}" class="add-to-cart-link">
+                <button type="button">Ajouter au panier</button>
+            </a>
             {% endif %}
     </div>
 </div>
