@@ -1,6 +1,9 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Product
 from category.models import Category
+from carts.views import _cart_id
+from carts.models import CartItem
+
 
 def store(request, category_slug=None):
     """
@@ -88,18 +91,11 @@ def store(request, category_slug=None):
 def product_detail(request, category_slug, product_slug):
     """
     Vue pour afficher le détail d'un produit spécifique.
-
-    Arguments:
-    request -- Requête HTTP
-    category_slug -- Slug de la catégorie du produit
-    product_slug -- Slug du produit
-
-    Retourne:
-    Réponse HTTP avec le rendu de la page de détail du produit
     """
     try:
         # Récupérer le produit spécifique ou lever une exception si il n'existe pas
         single_product = Product.objects.get(category__slug=category_slug, slug=product_slug)
+        in_cart = CartItem.objects.filter(cart__cart_id=_cart_id(request), product=single_product).exists()
     except Exception as e:
         raise e
 
@@ -114,6 +110,7 @@ def product_detail(request, category_slug, product_slug):
     # Créer le contexte avec le produit et les liens des catégories
     context = {
         'single_product': single_product,
+        'in_cart': in_cart,
         'women_links': women_links,
         'women_acc': women_acc,
         'men_links': men_links,

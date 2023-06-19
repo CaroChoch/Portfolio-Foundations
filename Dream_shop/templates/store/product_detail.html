@@ -41,12 +41,22 @@
                 <input type="number" id="product-quantity" name="product-quantity" min="1" max="10">
             </div>
         </div>
-        {% if single_product.stock <= 0 %} <h5 class="text-danger">Rupture De Stock</h5>
+        {% if single_product.stock <= 0 %}
+        <h5 class="text-danger">Rupture De Stock</h5>
             {% else %}
-            <a href="{% url 'add_cart' single_product.id %}" class="add-to-cart-link">
-                <button type="button">Ajouter au panier</button>
+            {% if in_cart %}
+
+            <button type="button" class="already-cart">Déja au panier<i class="fas fa-check"></i></button>
+
+            <a href="{% url 'cart' %}" class="add-to-cart-link">
+                <button type="button" class="see-cart">Voir le panier<i class="fas fa-eye"></i></button>
             </a>
+                {% else %}
+                <a href="{% url 'add_cart' single_product.id %}" class="add-to-cart-link">
+                    <button type="button" class="btn-detail">Ajouter au panier<i class="fas fa-shopping-cart"></i></button>
+                </a>
             {% endif %}
+        {% endif %}
     </div>
 </div>
 <!-- Click sur les differentes vignettes -->
