@@ -61,13 +61,12 @@
 .nav-bar a {
   /* Affichage, taille de la police, retrait de la décoration, couleur, police, padding, transition */
   display: block;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   text-decoration: none;
   color: white;
   font-family: 'Ananda', arial, cursive, sans-serif;
   padding: 1rem 2rem;
   transition: all 0.4s ease;
-
 }
 
 /* Style des liens de la barre de navigation au survol */
@@ -166,10 +165,9 @@
 
 /* Style des liens de la section de navigation */
 .nav-section a {
-  /* Couleur, retrait de la décoration, marge */
+  margin-right: 20px;
   color: white;
   text-decoration: none;
-  margin: 0 0.1rem;
 }
 
 /* Style des liens de la section de navigation au survol */
@@ -188,8 +186,8 @@
   justify-content: center;
   align-items: center;
   position: absolute;
-  top: 34%;
-  right: 9.6rem;
+  top: 30%;
+  right: 4.8rem;
   transform: translate(50%, -50%);
   width: 24px;
   height: 24px;
@@ -201,6 +199,7 @@
   font-family: Arial, Helvetica, sans-serif;
   text-align: center;
 }
+
 
 
 /* ###################################################################################################
@@ -224,7 +223,8 @@
   border-radius: 15px;
   width: 420px;
   height: 30px;
-  margin-right: 350px;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 /* ###################################################################################################

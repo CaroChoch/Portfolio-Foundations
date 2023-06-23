@@ -142,9 +142,36 @@
   font-family: Arial, Helvetica, sans-serif;
   margin-left: 5px;
 }
+/* Style pour le message panier vide */
 .text-danger {
   color: red;
   font-size: 25px;
   margin-bottom: 10px;
   text-align: center;
+}
+
+/* #################### PAGINATION ################### */
+
+/* Gére la mise en page générale de la pagination. */
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 50px;
+  padding: 10px;
+  font-size: 20px;
+  font-weight: 300;
+}
+/* Gére l'espacement entre chaque élément de pagination. */
+.page-item {
+  margin: 0 5px;
+}
+/* Gére le style des liens dans la pagination. */
+.page-link {
+  color: #315D68;
+  text-decoration: none;
+}
+/* Gére le style des liens dans les éléments de pagination désactivés et actifs. */
+.page-item.disabled .page-link,
+.page-item.active .page-link {
+  color: red;
 }

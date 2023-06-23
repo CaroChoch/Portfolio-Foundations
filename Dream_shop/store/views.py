@@ -3,6 +3,7 @@ from .models import Product
 from category.models import Category
 from carts.views import _cart_id
 from carts.models import CartItem
+from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 
 
 def store(request, category_slug=None):
@@ -36,13 +37,18 @@ def store(request, category_slug=None):
         
         # Filtrer les produits disponibles en fonction de cette catégorie
         products = Product.objects.filter(category=categories, is_available=True)
+
+        # Paginator pour la page store avec 9 elements par page
+        paginator = Paginator(products, 9)
+        page = request.GET.get('page')
+        paged_products = paginator.get_page(page)
         
         # Compter le nombre de produits disponibles dans cette catégorie
         product_count = products.count()
         page_title = categories.category_name
     else:
         # Si aucun slug de catégorie n'est fourni, récupérer tous les produits disponibles
-        products = Product.objects.filter(is_available=True)
+        products = Product.objects.filter(is_available=True).order_by('id')
 
         # Filtrer les produits par genre (homme ou femme) et par type de produit
         gender = request.GET.get('gender')
@@ -67,12 +73,17 @@ def store(request, category_slug=None):
             products = products.filter(category__product_type='X')
             page_title = "Accessoires Femme"
 
+        # Pagination de store avec 9 elements par page
+        paginator = Paginator(products, 9)
+        page = request.GET.get('page')
+        paged_products = paginator.get_page(page)
+
         # Compter le nombre total de produits disponibles
         product_count = products.count()
 
     # Créer le contexte avec les produits, le nombre de produits et le titre de la page
     context = {
-        'products': products,
+        'products': paged_products,
         'product_count': product_count,
         'women_links': women_links,
         'women_acc': women_acc,
@@ -98,6 +109,7 @@ def product_detail(request, category_slug, product_slug):
         in_cart = CartItem.objects.filter(cart__cart_id=_cart_id(request), product=single_product).exists()
     except Exception as e:
         raise e
+    
 
     # Récupérer les liens des catégories par genre et type de produit
     women_links = Category.objects.filter(product_type='B')

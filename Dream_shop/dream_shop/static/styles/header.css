@@ -151,7 +151,7 @@ body, html {
     margin-right: 0px;
   }
   #cart-items {
-    right: 9.5rem;
+    right: 3.6rem;
   }
 }
 
@@ -198,7 +198,7 @@ body, html {
   }
   #cart-items {
   top: 50%;
-  right: 5.8rem;
+  right: 2.5rem;
   width: 20px;
   height: 20px;
   font-size: 14px;
@@ -234,7 +234,7 @@ body, html {
   }
   #cart-items {
     top: 50%;
-    right: 5.8rem;
+    right: 1.8rem;
     width: 15px;
     height: 15px;
     font-size: 12px;
@@ -270,7 +270,7 @@ body, html {
   }
   #cart-items {
     top: -10%;
-    right: 2rem;
+    right: 1rem;
     width: 15px;
     height: 15px;
     font-size: 12px;

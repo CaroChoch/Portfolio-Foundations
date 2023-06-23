@@ -25,6 +25,7 @@
 /* Style pour le titre du panier */
 .title-cart {
   text-align: center;
+  margin-left: 12em;
   font-family: 'Ananda', Arial, Helvetica, sans-serif;
   letter-spacing: 2px;
   font-size: 50px;
@@ -144,6 +145,7 @@
 /* Styles pour les boutons de validation */
 .checkout-buttons button {
   padding: 10px 20px;
+  margin-right: 20px;
   background-color: #315D68;
   color: #fff;
   border: none;
