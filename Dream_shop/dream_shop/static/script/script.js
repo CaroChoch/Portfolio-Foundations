@@ -42,13 +42,3 @@
   
     setInterval(nextSlide, 5000);
   })();
-
-/* ###################################################################################################
-   ###########################################  AUTO HOURS  ##########################################
-   ################################################################################################### */
-
-   (function() {
-    var dayOfWeek = new Date().getDay();
-    var storeHoursSelector = document.getElementById("store-hours");
-    storeHoursSelector.selectedIndex = dayOfWeek;
-  })();

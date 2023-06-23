@@ -106,8 +106,10 @@
          ################################################################################################### -->
 
     <div class="nav-section">
-      <a href="{% url 'cart' %}"><i class="fas fa-shopping-cart"></i><span id="cart-items">{{ cart_count }}</span></a>
-      <a href="#"><i class="fas fa-user"></i></a>
+      <a href="#">Se connecter</a>
+      <a href="#">S'inscrire</a>
+      <a href="{% url 'cart' %}" class="nav-cart"><i class="fas fa-shopping-cart"></i><span id="cart-items">{{ cart_count }}</span></a>
+      <!-- <a href="#"><i class="fas fa-user"></i></a> -->
     </div>
   </nav>
   <div id="dummy_nav" style="display:none;"></div>

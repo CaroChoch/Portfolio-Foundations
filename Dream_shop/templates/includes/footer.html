@@ -23,7 +23,7 @@
             
             <!-- BOUTTON ET LOGO CENTRAL -->
             <div class="footer-logo-newsletter">
-              <a href="signup.html" class="newsletter-button">S'inscrire à la newsletter</a>
+              <a href="#" class="newsletter-button">S'inscrire à la newsletter</a>
               <div class="footer-logo">
                 <a href="{% url 'store' %}">
                   <img src="{% static 'styles/images/MA_BOUTIQUE_LOGO_Fond-Couleur.png' %}" alt="Logo boutique">
@@ -64,9 +64,17 @@
              ################################################################################################### -->
 
         <script src="{% static 'script/script.js' %}"></script>
+
+        <script>
+                  (function() {
+          var dayOfWeek = new Date().getDay();
+          var storeHoursSelector = document.getElementById("store-hours");
+          storeHoursSelector.selectedIndex = dayOfWeek;
+        })();
+
+        </script>
+        
         <script src="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.js"></script>
         <script>
           AOS.init();
         </script>
-  </body>
-</html>
