@@ -7,6 +7,14 @@
   font-family: 'Ananda', arial, cursive, sans-serif;
   padding: 50px;
 }
+.page-title2{
+  text-align: center;
+  color: red;
+  margin-right: auto;
+  margin-left: auto;
+  font-family: 'Ananda', arial, cursive, sans-serif;
+  letter-spacing: 2px;
+}
 
 /* Configuration de la grille de produits */
 .product-grid {

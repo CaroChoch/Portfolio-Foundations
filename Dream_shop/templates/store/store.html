@@ -4,11 +4,18 @@
 
 {% block content %}
 <div class="background-store">
+  {% if 'search' in request.path %}
+  <h1 class="page-title">
+    Résultat de la recherche
+  </h1>
+  {% else %}
   <h1 class="page-title">
     {{ page_title }}
   </h1>
+  {% endif %}
   <span class="product_count">Total articles :<b>{{ product_count }}</b></span>
   <div class="product-grid">
+    {% if products %}
     {% for product in products %}
     <div class="product-card{% if not product.second_image %} no-second-image{% endif %}">
       <div class="product-image">
@@ -26,6 +33,11 @@
       <a class="product-details" href="{{ product.get_url }}">Voir les détails</a>
     </div>
     {% endfor %}
+    {% else %}
+
+      <h2 class="page-title2">Aucun résultat trouvé...</h2>
+
+    {% endif %}
   </div>
 </div>
 
