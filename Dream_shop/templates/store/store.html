@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+<div class="background-store">
+  <h1 class="page-title">
+    {{ page_title }}
+  </h1>
+  <span class="product_count">Total articles :<b>{{ product_count }}</b></span>
+  <div class="product-grid">
+    {% for product in products %}
+    <div class="product-card{% if not product.second_image %} no-second-image{% endif %}">
+      <div class="product-image">
+          <div class="image-face front">
+              <img src="{{ product.images.url }}" alt="Vêtement de face">
+          </div>
+          {% if product.second_image %}
+          <div class="image-face back">
+              <img src="{{ product.second_image.url }}" alt="Vêtement de dos">
+          </div>
+          {% endif %}
+      </div>
+      <h2 class="product-name">{{ product.title_online }}</h2>
+      <p class="product-price">€ {{ product.price|floatformat:2 }}</p>
+      <a class="product-details" href="{{ product.get_url }}">Voir les détails</a>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+
+
+<div class="pagination">
+  {% if products.has_other_pages %}
+  <div class="page-item">
+      {% if products.has_previous %}
+      <a class="page-link" href="?gender={{ request.GET.gender }}&category={{ request.GET.category }}&page={{ products.previous_page_number }}">Page précédente</a>
+      {% else %}
+          <span class="page-link disabled"></span>
+      {% endif %}
+  </div>
+
+  {% for num in products.paginator.page_range %}
+      {% if products.number == num %}
+          <div class="page-item active">
+              <span class="page-link">{{ num }}</span>
+          </div>
+      {% else %}
+          <div class="page-item">
+            <a class="page-link" href="?gender={{ request.GET.gender }}&category={{ request.GET.category }}&page={{ num }}">{{ num }}</a>
+          </div>
+      {% endif %}
+  {% endfor %}
+
+  <div class="page-item">
+      {% if products.has_next %}
+      <a class="page-link" href="?gender={{ request.GET.gender }}&category={{ request.GET.category }}&page={{ products.next_page_number }}">Page suivante</a>
+
+      {% else %}
+          <span class="page-link disabled"></span>
+      {% endif %}
+  </div>
+  {% endif %}
+</div>
+
+{% endblock %}
