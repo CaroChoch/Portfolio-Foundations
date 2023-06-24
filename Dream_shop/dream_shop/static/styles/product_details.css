@@ -17,10 +17,10 @@
   border: 8px solid #315D68;
   border-radius: 20px;
   box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.35),
-  inset -5px -5px 15px rgba(255, 255, 255, 0.1),
-  inset 5px 5px 15px rgba(49, 93, 104, 0.8);
+              inset -5px -5px 15px rgba(255, 255, 255, 0.1),
+              inset 5px 5px 15px rgba(49, 93, 104, 0.8);
   padding: 40px;
-  padding-bottom: 95px;
+  padding-bottom: 30px;
   margin-top: 50px;
   margin-bottom: 50px;
   gap: 20px;
@@ -34,7 +34,7 @@
 /* Classe pour le style de l'image elle-même */
 .product-image-detail img {
   width: 100%;
-  height: 100%;
+  height: 90%;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   border-radius: 20px;
 }
@@ -87,6 +87,7 @@
 /* Classe pour le conteneur de sélection de quantité */
 .select-quantity-detail {
   display: flex;
+  text-align: center;
   justify-content: space-between;
   flex-wrap: nowrap;
   margin-right: 30px;
@@ -110,16 +111,18 @@
   background: #315D68;
   color: #fff;
   border-radius: 25px;
-  font-size: 1.2em;
+  font-size: 1.1em;
   opacity: 0.7;
   transition: 0.5s;
   outline: none;
-  width: 40%;
+  width: 62%;
 }
 /* Classe pour le bouton d'achat */
 .product-info-detail .btn-detail {
   border: none;
   padding: 15px 0;
+  margin-top: 20px;
+  margin-bottom: 10px;
   font-size: 1.5em;
   color: #fff;
   background: #315D68;
@@ -140,47 +143,6 @@
   padding-left: 20px;
   color: white;
 }
-.product-info-detail .already-cart {
-  border: none;
-  padding: 15px 0;
-  font-size: 1.5em;
-  color: #fff;
-  background: green;
-  cursor: pointer;
-  font-family: 'Ananda';
-  letter-spacing: 0.15em;
-  width: 97%;
-  font-size: 18px;
-  border-radius: 5px;
-}
-.product-info-detail .already-cart i {
-  padding-left: 20px;
-  color: white;
-}
-.product-info-detail .see-cart {
-  border: none;
-  margin-bottom: 10px;
-  padding: 15px 0;
-  font-size: 1.5em;
-  color: #fff;
-  background: #315D68;
-  cursor: pointer;
-  font-family: 'Ananda';
-  letter-spacing: 0.15em;
-  transition: background 0.2s ease-in-out, color 0.2s ease-in-out;
-  width: 97%;
-  font-size: 18px;
-  border-radius: 5px;
-} 
-.product-info-detail .see-cart:hover {
-  background: #1a2e45;
-  color: #ffffff;
-} 
-.product-info-detail .see-cart i {
-  padding-left: 20px;
-  color: white;
-
-}
 /* Styles communs pour les titres, paragraphes et conteneur de quantité */
 .product-info-detail h2,
 .product-info-detail h3,
@@ -188,6 +150,7 @@
 .select-quantity-detail {
   border-bottom: 1px solid #CCC; 
   padding-bottom: 15px;
+  margin-top: 66px;
   margin-bottom: 15px;
 }
 /* Styles spécifiques pour les titres */

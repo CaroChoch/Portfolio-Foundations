@@ -2,11 +2,13 @@
 {% load static %}
 
 {% block content %}
-
+<!-- Affichage des détails du produit -->
 <div class="product-card-detail">
     <div class="product-image-detail">
+        <!-- Image principale du produit -->
         <img id="product-main-image" src="{{ single_product.images.url }}" alt="Image de l'article">
         <div class="product-thumbnails">
+            <!-- Vignettes d'images supplémentaires du produit -->
             {% if single_product.second_image %}
             <img class="product-thumbnail" src="{{ single_product.second_image.url }}" alt="Image 2 de l'article">
             {% endif %}
@@ -22,44 +24,49 @@
         </div>
     </div>
 
+
     <div class="product-info-detail">
-        <h2>{{ single_product.title_online}}</h2>
-        <h3>{{ single_product.price|floatformat:2 }}</h3>
-        <p>{{ single_product.description }}</p>
+        <!-- Formulaire pour ajouter le produit au panier -->
+        <form action="{% url 'add_cart' single_product.id %}" method="POST">
+            {% csrf_token %}
+        <h2>{{ single_product.title_online}}</h2><!-- Titre du produit -->
+        <h3>{{ single_product.price|floatformat:2 }}</h3><!-- Prix du produit -->
+        <p>{{ single_product.description }}</p><!-- Description du produit -->
         <div class="select-quantity-detail">
             <div>
                 <label for="product-size">Taille:</label>
-                <select id="product-size" name="product-size">
-                    <option value="small">Small</option>
-                    <option value="medium">Medium</option>
-                    <option value="large">Large</option>
-                    <option value="xlarge">XLarge</option>
+                <select id="product-size" name="size" required>
+                    <option value="" disabled selected>Choisir la taille</option>
+                    {% for i in single_product.variation_set.sizes %}
+                    <option value="{{ i.variation_value | lower }}">{{ i.variation_value | capfirst }}</option>
+                    {% endfor %}
                 </select>
             </div>
             <div>
-                <label for="product-quantity">Quantité:</label>
-                <input type="number" id="product-quantity" name="product-quantity" min="1" max="10">
+                <label for="product-color">Couleur:</label>
+                <select id="product-color" name="color" required>
+                    <option value="" disabled selected>Choisir la couleur</option>
+                    {% for i in single_product.variation_set.colors %}
+                    <option value="{{ i.variation_value | lower }}">{{ i.variation_value | capfirst }}</option>
+                    {% endfor %}
+                </select>
             </div>
         </div>
         {% if single_product.stock <= 0 %}
+        <!-- Affiche un message si le stock est épuisé -->
         <h5 class="text-danger">Rupture De Stock</h5>
             {% else %}
-            {% if in_cart %}
-
-            <button type="button" class="already-cart">Déja au panier<i class="fas fa-check"></i></button>
-
-            <a href="{% url 'cart' %}" class="add-to-cart-link">
-                <button type="button" class="see-cart">Voir le panier<i class="fas fa-eye"></i></button>
-            </a>
-                {% else %}
-                <a href="{% url 'add_cart' single_product.id %}" class="add-to-cart-link">
-                    <button type="button" class="btn-detail">Ajouter au panier<i class="fas fa-shopping-cart"></i></button>
+                <a class="add-to-cart-link">
+                    <button type="submit" class="btn-detail">Ajouter au panier<i class="fas fa-shopping-cart"></i></button>
                 </a>
-            {% endif %}
         {% endif %}
+    </form>
     </div>
 </div>
-<!-- Click sur les differentes vignettes -->
+
+
+
+<!-- Changement d'image au clic sur les vignettes -->
 <script>
     window.addEventListener('load', function () {
         var thumbnails = document.getElementsByClassName('product-thumbnail');
