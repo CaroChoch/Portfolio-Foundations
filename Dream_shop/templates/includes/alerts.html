@@ -1,0 +1,30 @@
+{% if messages %}
+<div class="messages">
+    {% for message in messages %}
+    <div{% if message.tags %} class="{{ message.tags }}"{% endif %}>
+        {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Important: {% endif %}
+        {{ message }}
+</div>
+    {% endfor %}
+</div>
+{% endif %}
+
+<script>
+    // Fonction pour masquer le message d'alerte après 30 secondes
+    setTimeout(function() {
+        var messagesContainer = document.querySelector('.messages');
+        if (messagesContainer) {
+            messagesContainer.style.display = 'none';
+        }
+    }, 30000);  // 30 secondes (30000 millisecondes)
+</script>
+
+<style>
+    .message {
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+
+</style>

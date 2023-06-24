@@ -85,6 +85,7 @@ nav.sticky-nav {
   transition: 0.5s;
   outline: none;
   opacity: 0.7;
+  margin-top: 20px;
 }
 /* Style du span dans inputBox */
 .container-signup .signup .inputBox span {
@@ -142,6 +143,7 @@ nav.sticky-nav {
   letter-spacing: 0.15em;
   width: 362px;
   transition: background 0.2s ease-in-out, color 0.2s ease-in-out;
+
 }
 /* Ajout d'un effet de survol aux boutons de soumission */
 .container-signup .signup .inputBox input[type="submit"]:hover {
@@ -203,4 +205,24 @@ nav.sticky-nav {
 /* Réduit la largeur pour laisser de l'espace pour le margin */
 .container-signup .signup .inputRow .inputBox {
   width: calc(50% - 60px); 
+}
+
+.radio-inline label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 10px;
+  background-color: red;
+}
+
+.civilite {
+  color: #315D68;
+}
+
+.errorlist {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  margin-top: 20px;
+  color: red;
 }

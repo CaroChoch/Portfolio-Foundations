@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
+import datetime
 
 
 class MyAccountManager(BaseUserManager):
@@ -50,12 +51,23 @@ class Account(AbstractBaseUser):
   """
   Modèle de compte utilisateur personnalisé.
   """
+  GENDER_CHOICES = (
+    ('F', 'Madame'),
+    ('M', 'Monsieur'),
+  )
+
   first_name   = models.CharField(max_length=50)
   last_name    = models.CharField(max_length=50)
   username     = models.CharField(max_length=50, unique=True)
   email        = models.EmailField(max_length=100, unique=True)
   phone_number = models.CharField(max_length=50)
-
+  gender       = models.CharField(max_length=1, choices=GENDER_CHOICES)
+  address      = models.CharField(max_length=100, default='')
+  postal_code  = models.CharField(max_length=20, default='N/A')
+  city         = models.CharField(max_length=50, default="Unknown")
+  country      = models.CharField(max_length=50, default="Unknown")
+  birth_date   = models.DateField(default=datetime.date.today)
+    
   # Ces champs sont requis pour la gestion des utilisateurs dans Django
   date_joined      = models.DateTimeField(auto_now_add=True)
   last_login       = models.DateTimeField(auto_now_add=True)

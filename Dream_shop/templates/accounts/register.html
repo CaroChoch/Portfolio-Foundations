@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<div class="background-signup"></div>
+         <div class="container-signup">
+            {% include "includes/alerts.html" %}
+           <!-- Formulaire d'inscription -->
+           <div class="form signup">
+               <h2 >Inscription</h2>
+               <form action="{% url 'register' %}" method="POST">
+                {% csrf_token %}
+                
+
+                <div class="civilite">Civilité :</div>
+               <div class="inputBox radioInput radio-inline">
+                {{ form.gender }}
+               </div>
+               <div class="inpu@tRow">
+                   <div class="inputBox">
+                       {{ form.last_name }}
+                       <i class="fa-solid fa-user"></i>
+                       <span>Nom</span>
+                   </div>
+                   <div class="inputBox">
+                    {{ form.first_name }}
+                       <i class="fa-solid fa-user-tag"></i>
+                       <span>Prénom</span>
+                   </div>
+               </div>
+               <div class="inputRow">
+                   <div class="inputBox">
+                    {{ form.address }}
+                       <i class="fa-solid fa-location-dot"></i>
+                       <span>Adresse</span>
+                   </div>
+                   <div class="inputBox">
+                    {{ form.postal_code }}
+                       <i class="fa-solid fa-map-pin"></i>
+                       <span>Code postal</span>
+                   </div>
+               </div>
+               <div class="inputRow">
+                   <div class="inputBox">
+                    {{ form.city }}
+                       <i class="fa-solid fa-building"></i>
+                       <span>Ville</span>
+                   </div>
+                   <div class="inputBox">
+                    {{ form.country }}
+                       <i class="fa-sharp fa-solid fa-earth-americas"></i>
+                       <span>Pays</span>
+                   </div>
+               </div>
+               <div class="inputBox">
+                {{ form.email }}
+                   <i class="fa-solid fa-envelope"></i>
+                   <span>Adresse e-mail</span>
+               </div>
+               <div class="inputRow">
+                 <div class="inputBox">
+                    {{ form.phone_number }}
+                   <i class="fa-solid fa-phone"></i>
+                   <span>Numéro de téléphone</span>
+                 </div>
+                 <div class="inputBox">
+                    {{ form.birth_date }}
+                     <i class="fa-solid fa-cake-candles"></i>
+                     <span>JJ/MM/AAAA</span>
+                 </div>
+               </div>
+               <div class="inputRow">
+                   <div class="inputBox">
+                    {{ form.password }}
+                       <i class="fa-solid fa-lock"></i>
+                       <span>Créer mot de passe</span>
+                   </div>
+                   <div class="inputBox">
+                    {{ form.confirm_password }}
+                       <i class="fa-solid fa-lock-open"></i>
+                       <span>Confirmer mot de passe</span>
+                   </div>
+               </div>
+               <div class="inputBox">
+                   <input type="submit" value="Créer un compte">
+               </div>
+               {{ form.email.errors }}
+               {{ form.non_field_errors }}
+            </form>
+               <p>Déjà membre ? <a href="{% url 'login' %}" class="login">Connectez-vous</a></p>
+            
+           </div>
+    </div>
+    
+
+{% endblock %}
