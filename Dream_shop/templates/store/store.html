@@ -4,39 +4,61 @@
 
 {% block content %}
 <div class="background-store">
+  {% if 'search' in request.path %}
+  <!-- Affiche le titre "Résultat de la recherche" si le chemin de la requête contient la chaîne de caractères "search" -->
+  <h1 class="page-title">
+    Résultat de la recherche
+  </h1>
+  {% else %}
+  <!-- Affiche le titre contenu dans la variable 'page_title' -->
   <h1 class="page-title">
     {{ page_title }}
   </h1>
+  {% endif %}
+  <!-- Affiche le nombre total d'articles -->
   <span class="product_count">Total articles :<b>{{ product_count }}</b></span>
   <div class="product-grid">
+    {% if products %}
+    <!-- Boucle sur la liste de produits -->
     {% for product in products %}
     <div class="product-card{% if not product.second_image %} no-second-image{% endif %}">
       <div class="product-image">
           <div class="image-face front">
+              <!-- Affiche l'image principale du produit -->
               <img src="{{ product.images.url }}" alt="Vêtement de face">
           </div>
           {% if product.second_image %}
           <div class="image-face back">
+              <!-- Affiche l'image secondaire du produit, si elle existe -->
               <img src="{{ product.second_image.url }}" alt="Vêtement de dos">
           </div>
           {% endif %}
       </div>
+      <!-- Affiche le nom du produit -->
       <h2 class="product-name">{{ product.title_online }}</h2>
+      <!-- Affiche le prix du produit -->
       <p class="product-price">€ {{ product.price|floatformat:2 }}</p>
+      <!-- Affiche un lien vers les détails du produit -->
       <a class="product-details" href="{{ product.get_url }}">Voir les détails</a>
     </div>
     {% endfor %}
+    {% else %}
+      <!-- Affiche un message lorsque aucun produit n'est disponible -->
+      <h2 class="page-title2">Aucun résultat trouvé...</h2>
+    {% endif %}
   </div>
 </div>
 
 
-
+<!-- Pagination de la page store -->
 <div class="pagination">
   {% if products.has_other_pages %}
   <div class="page-item">
       {% if products.has_previous %}
+      <!-- Affiche un lien vers la page précédente -->
       <a class="page-link" href="?gender={{ request.GET.gender }}&category={{ request.GET.category }}&page={{ products.previous_page_number }}">Page précédente</a>
       {% else %}
+          <!-- Désactive le lien si aucune page précédente n'est disponible -->
           <span class="page-link disabled"></span>
       {% endif %}
   </div>
@@ -44,10 +66,12 @@
   {% for num in products.paginator.page_range %}
       {% if products.number == num %}
           <div class="page-item active">
+              <!-- Affiche le numéro de page actuel en tant que lien actif -->
               <span class="page-link">{{ num }}</span>
           </div>
       {% else %}
           <div class="page-item">
+            <!-- Affiche un lien vers la page correspondante -->
             <a class="page-link" href="?gender={{ request.GET.gender }}&category={{ request.GET.category }}&page={{ num }}">{{ num }}</a>
           </div>
       {% endif %}
@@ -55,9 +79,10 @@
 
   <div class="page-item">
       {% if products.has_next %}
+      <!-- Affiche un lien vers la page suivante -->
       <a class="page-link" href="?gender={{ request.GET.gender }}&category={{ request.GET.category }}&page={{ products.next_page_number }}">Page suivante</a>
-
       {% else %}
+          <!-- Désactive le lien si aucune page suivante n'est disponible -->
           <span class="page-link disabled"></span>
       {% endif %}
   </div>
