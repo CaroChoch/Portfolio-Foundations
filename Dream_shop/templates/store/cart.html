@@ -4,10 +4,11 @@
 
 
 {% if not cart_items %}
-
+<!-- Affiche un message si le panier est vide -->
 <h2 class="empty-cart">Votre panier est vide</h2>
 <br><br>
 <div class="text-center">
+  <!-- Lien pour continuer les achats -->
   <a href="{% url 'store' %}" class="btn-cart">Continuez vos achats</a>
 </div>
 
@@ -15,6 +16,7 @@
 
 <div class="cart-container">
   <div style="flex: 0 0 70%; max-width: 70%;">
+    <!-- Titre du panier -->
     <h3 class="title-cart">Panier d'achat</h3>
     <div class="scrollable-cart-items">
     <table class="cart-table">
@@ -22,8 +24,9 @@
         <tr>
           <th>Produit</th>
           <th>Nom</th>
-          <th>Quantité</th>
           <th>Taille</th>
+          <th>Couleur</th>
+          <th>Quantité</th>
           <th>Prix Unitaire</th>
           <th>Prix Total</th>
           <th>Supprimer</th>
@@ -32,24 +35,54 @@
       <tbody>
         {% for cart_item in cart_items %}
         <tr>
+          <!-- Colonne pour l'image du produit -->
           <td><img class="product-img" src="{{ cart_item.product.images.url }}" alt="product image"></td>
+          <!-- Colonne pour le lien du nom du produit -->
           <td><a href="{{ cart_item.product.get_url }}" class="link-name">{{ cart_item.product.title_online }}</a></td>
+          <!-- Colonne pour la taille du produit -->
           <td>
+            {% if cart_item.variations.all %}
+              {% for item in cart_item.variations.sizes %}
+                {{ item.variation_value | capfirst }}
+              {% endfor %}
+            {% endif %}
+          </td>
+          <!-- Colonne pour la couleur du produit -->
+          <td>
+            {% if cart_item.variations.all %}
+              {% for item in cart_item.variations.colors %}
+                {{ item.variation_value | capfirst }}
+              {% endfor %}
+            {% endif %}
+          </td>
+          <td>
+
             <div class="quantity-buttons">
-              <a href="{% url 'remove_cart' cart_item.product.id %}" class="button-cart1" style="text-decoration: none;">
-                <button type="button" onclick="decrementQuantity(this)" data-product-id="{{ cart_item.product.id }}" style="font-size: 24px; width: 40px; height: 40px; padding: 0; line-height: 40px; margin-right: 10px;">-</button>
+               <!-- Bouton pour diminuer la quantité -->
+              <a href="{% url 'remove_cart' cart_item.product.id cart_item.id %}" class="button-cart1">
+                <button type="button" onclick="decrementQuantity(this)" data-product-id="{{ cart_item.product.id }}">-</button>
               </a>
-              <span class="product-quantity" style="font-size: 24px; width: 40px; height: 40px; text-align: center; ">{{ cart_item.quantity }}</span>
-              <a href="{% url 'add_cart' cart_item.product.id %}" class="button-cart2">
-                <button type="button" onclick="incrementQuantity(this)" data-product-id="{{ cart_item.product.id }}" style="font-size: 24px; width: 40px; height: 40px; padding: 0; line-height: 40px; margin-left: 10px;">+</button>
+              <!-- Affiche la quantité actuelle -->
+              <span class="product-quantity">{{ cart_item.quantity }}</span>
+              <form class="form-product" action="{% url 'add_cart' cart_item.product.id %}" method="POST">
+                {% csrf_token %}
+                {% for item in cart_item.variations.all %}
+                <input type="hidden" name="{{ item.variation_category | lower }}" value="{{ item.variation_value | capfirst }}">
+                {% endfor %}
+              <!-- Bouton pour augmenter la quantité -->
+              <a href="#" class="button-cart2">
+                <button type="submit" onclick="incrementQuantity(this)" data-product-id="{{ cart_item.product.id }}">+</button>
               </a>
+            </form>
             </div>
           </td>
-          <td>S</td>
+          <!-- Colonne pour le prix unitaire du produit -->
           <td>{{ cart_item.product.price|floatformat:2 }}€</td>
+          <!-- Colonne pour le prix total du produit dans le panier -->
           <td>{{ cart_item.sub_total|floatformat:2 }}€</td>
           <td>
-            <a href="{% url 'remove_cart_item' cart_item.product.id %}">
+            <!-- Bouton pour supprimer un article du panier -->
+            <a href="{% url 'remove_cart_item' cart_item.product.id cart_item.id %}" onclick="return confirm('Etes-vous sûr de vouloir supprimer l\'article ?')">
             <button class="delete-button">🗑️</button>
             </a>
           </td>
@@ -59,30 +92,37 @@
     </table>
     </div>
   </div>
-  <div style="flex: 0 0 30%; max-width: 30%;">
+  <div class="container-cart">
     <div class="cart-wrapper">
       <div class="cart-summary">
+        <!-- Résumé du panier -->
         <h4>Résumé du panier</h4>
         <div class="summary-item">
           <p>Sous-total : </p><span>{{ total|floatformat:2 }}€</span>
         </div>
         <div class="summary-item">
           <p>Code de réduction :</p>
+          <!-- Champ de saisie pour le code de réduction -->
           <input type="text" id="discountCode" name="discountCode">
         </div>
         <div class="summary-item">
+          <!-- Champ livraison -->
           <p>Option de livraison : </p><span>Gratuit</span>
         </div>
         <div class="summary-item">
+          <!-- Champ pour les taxes -->
           <p>Taxes incluses: </p><span>{{ tax|floatformat:2 }}€</span>
         </div>
         <div class="summary-item total">
+          <!-- Prix final -->
           <p>Total final : </p><span>{{ total|floatformat:2 }}€</span>
         </div>
         <div class="checkout-buttons">
+          <!-- Lien pour continuer les achats -->
           <a href="{% url 'store' %}">
             <button type="button">Continuer les achats</button>
           </a>
+          <!-- Bouton pour passer à la caisse -->
           <button type="button">Passer à la caisse</button>
         </div>
       </div>
@@ -94,13 +134,13 @@
 
 
 <script>
-  
+  // Fonction pour augmenter la quantité
   function incrementQuantity(buttonElement) {
     var quantitySpan = buttonElement.parentElement.querySelector('.product-quantity');
     var currentQuantity = parseInt(quantitySpan.innerText);
     quantitySpan.innerText = currentQuantity + 1;
   }
-
+  // Fonction pour diminuer la quantité
   function decrementQuantity(buttonElement) {
     var quantitySpan = buttonElement.parentElement.querySelector('.product-quantity');
     var currentQuantity = parseInt(quantitySpan.innerText);
