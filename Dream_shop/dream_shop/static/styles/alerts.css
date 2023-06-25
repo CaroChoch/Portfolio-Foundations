@@ -1,0 +1,36 @@
+/* Configuration du conteneur des alertes */
+.container_alert {
+  display: flex;
+  margin-bottom: 15px;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: #315D68;
+}
+/* Configuration des message alertes */
+.alert {
+  flex-grow: 1;
+  color: white;
+}
+/* Configuration du bouton de fermeture */
+.close {
+  font-size: 20px;
+  padding: 1px;
+  line-height: 1;
+  color: white;
+  background-color: transparent;
+  border: none;
+}
+/* Configuration de l'icône de fermeture */
+.close-icon {
+  cursor: pointer;
+}
+/* Message d'erreur */
+.errorlist {
+  list-style-type: none;
+  color: white;
+  padding: 10px;
+  margin-top: 10px;
+  margin-bottom: 15px;
+  background-color: red;
+}

@@ -1,0 +1,149 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="background-signup"></div>
+<div class="container-signup">
+  {% include 'includes/alerts.html' %}
+  <!-- Début du formulaire d'inscription -->
+  <form action="{% url 'register' %}" method="POST">
+    <!-- Div pour afficher les erreurs de formulaire -->
+    <div id="form_errors"></div>
+    {{ form.email.errors }}
+    <!-- Affichage des erreurs non associées à un champ spécifique -->
+    {{ form.non_field_errors }}
+  <div class="form signup">
+    <h2>Inscription</h2>
+      {% csrf_token %}
+      
+
+    <div class="inputBox radioInput">
+      <input type="radio" id="homme" name="civility" value="M" required="required">
+      <label for="homme">Monsieur</label>
+      <input type="radio" id="femme" name="civility" value="F" required="required">
+      <label for="femme">Madame</label>
+    </div>
+
+    <div class="inputRow">
+      <div class="inputBox">
+        <input type="text" name="first_name" required="required">
+        <i class="fa-solid fa-user-tag"></i>
+        <span>Prénom</span>
+      </div>
+
+      <div class="inputBox">
+        <input type="text" name="last_name" required="required">
+        <i class="fa-solid fa-user"></i>
+        <span>Nom</span>
+      </div>
+    </div>
+
+    <div class="inputRow">
+      <div class="inputBox">
+        <input type="text" name="address" required="required">
+        <i class="fa-solid fa-location-dot"></i>
+        <span>Adresse</span>
+      </div>
+
+      <div class="inputBox">
+        <input type="text" name="postal_code" required="required">
+        <i class="fa-solid fa-map-pin"></i>
+        <span>Code postal</span>
+      </div>
+    </div>
+
+    <div class="inputRow">
+      <div class="inputBox">
+        <input type="text" name="city" required="required">
+        <i class="fa-solid fa-building"></i>
+        <span>Ville</span>
+      </div>
+
+      <div class="inputBox">
+        <input type="text" name="country" required="required">
+        <i class="fa-sharp fa-solid fa-earth-americas"></i>
+        <span>Pays</span>
+      </div>
+    </div>
+
+    <div class="inputBox">
+      <input type="email" name="email" required="required">
+      <i class="fa-solid fa-envelope"></i>
+      <span>Adresse e-mail</span>
+    </div>
+
+    <div class="inputRow">
+      <div class="inputBox">
+        <input type="tel" name="phone_number" required="required">
+        <i class="fa-solid fa-phone"></i>
+        <span>Numéro de téléphone</span>
+      </div>
+
+      <div class="inputBox">
+        <input type="text" name="birth_date" required="required">
+        <i class="fa-solid fa-cake-candles"></i>
+        <span>JJ/MM/AAAA</span>
+      </div>
+    </div>
+
+    <div class="inputRow">
+      <div class="inputBox">
+        <input type="password" name="password" required="required">
+        <i class="fa-solid fa-lock"></i>
+        <span>Créer mot de passe</span>
+      </div>
+
+      <div class="inputBox">
+        <input type="password" name="confirm_password" required="required">
+        <i class="fa-solid fa-lock-open"></i>
+        <span>Confirmez mot de passe</span>
+      </div>
+    </div>
+
+    <div class="inputBox">
+      <input type="submit" value="Créer un compte">
+    </div>
+    <p>Déjà membre ? <a href="{% url 'login' %}" class="login">Connectez-vous</a></p>
+  </div>
+</form>
+</div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+   // Code exécuté lorsque le document est complètement chargé
+  $(document).ready(function () {
+      $('form').on('submit', function (event) {
+          event.preventDefault();
+          $.ajax({
+              url : "{% url 'register' %}", 
+              type : "POST",
+              data : $(this).serialize(),
+              success : function (response) {
+                  // Fonction exécutée en cas de succès de la requête AJAX
+                  if (response.success) {
+                      window.location.href = "{% url 'register' %}";
+                  } else {  
+                      let errors = JSON.parse(response.errors);
+                      let error_messages = "";
+  
+                      // Pour chaque clé (champ du formulaire) dans les erreurs
+                      for (let key in errors) {
+                          if (errors.hasOwnProperty(key)) {
+                              // Pour chaque message d'erreur pour ce champ
+                              for (let i in errors[key]) {
+                                  if (errors[key].hasOwnProperty(i)) {
+                                      error_messages += "<p class='errorlist'>" + errors[key][i].message + "</p>";
+                                  }
+                              }
+                          }
+                      }
+  
+                      $('#form_errors').html(error_messages);
+                  }
+              }
+          });
+      });
+  });
+  </script>
+
+{% endblock %}
