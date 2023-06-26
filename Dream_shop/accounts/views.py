@@ -63,10 +63,10 @@ def login(request):
 
     if user is not None:
       auth.login(request, user)
-      #messages.success(request, 'Vous êtes bien connecté !')
+      #messages.success(request, "Vous êtes bien connecté !")
       return redirect('home')
     else:
-      messages.error(request,'Identification échouée. Veuillez vérifier vos identifiants !')
+      messages.error(request, "Identification échouée, veuillez vérifier vos identifiants !")
       return redirect('login')
 
   return render(request, 'accounts/login.html')
@@ -76,3 +76,4 @@ def logout(request):
   auth.logout(request)
   messages.success(request, 'Vous êtes bien déconnecté !')
   return redirect('login')
+
