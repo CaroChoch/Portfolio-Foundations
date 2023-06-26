@@ -43,7 +43,7 @@ def register(request):
       return JsonResponse({'success': True})
     else:
       errors = form.errors.as_json()
-      return JsonResponse({'success': False, 'errors': errors})
+      return JsonResponse({'success': False, 'errors': errors}, status=400)
   else:
     form = RegistrationForm()
 
