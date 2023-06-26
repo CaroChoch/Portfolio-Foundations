@@ -242,3 +242,19 @@
 #dummy_nav {
   height: 80px;
 }
+
+/* ###################################################################################################
+   ########################################  LOG CONNECTION  #########################################
+   ################################################################################################### */
+
+/* Style pour le titre quand c'est connecté */
+.title_open {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  margin-right: 30px;
+  font-family: 'Ananda';
+  letter-spacing: 2px;
+  color: #FFD700;
+}
