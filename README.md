@@ -64,7 +64,71 @@ This rigorous testing approach allows us to detect and solve potential problems 
 
 <img width="1708" alt="Capture d’écran 2023-06-27 à 17 48 00" src="https://github.com/CaroChoch/Portfolio-Foundations/assets/113856302/f175621a-f3bf-41cd-8b09-fd30d9522c99">
 
-## 6. Next steps / Features to come
+## 5. Installation and Usage
+
+This section guides you through getting a copy of our project up and running on your local machine for development and testing purposes. Please note that these instructions are meant for a Unix-like operating system.
+
+### Prerequisites
+Ensure that you have the following software installed on your machine:
+
+- <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg" alt="python" width="25" height="25"/> Python 3.8 or higher
+- <img src="https://www.svgrepo.com/show/373554/django.svg" width="25" height="25"> Django 4.2
+- <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mysql/mysql-original.svg" width="25" height="25"> MySQL 8.0 or higher
+
+  
+1. Clone the repository to your local machine by running the following command in your terminal:
+
+```bash
+git clone https://github.com/CaroChoch/Portfolio-Foundations.git
+```
+
+2. Navigate to the directory where you cloned the repository:
+
+```bash
+cd Dream_shop
+```
+
+3. Edit the **settings.py** file in the Django application with your database details.
+
+```mysql
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'Your_database_name',
+        'USER': 'Your_name',
+        'PASSWORD': 'Your_password',
+        'HOST': 'localhost',
+        'PORT': '3306',
+    }
+}
+```
+
+4. Make database migrations and migrate:
+
+```bash
+python manage.py makemigrations
+python manage.py migrate
+```
+
+5. Finally, run the server with:
+
+```bash
+python manage.py runserver
+```
+
+Now, open your web browser and navigate to **http://127.0.0.1:8000** to see the application running.
+
+### Usage
+
+Now that your server is up and running, you can use the application:
+  
+- Use the navigation bar at the top to browse through different product categories.
+- Click on a product to view more details.
+- Add products to your cart and proceed.
+- Use the search bar to find specific products.
+- Create an account to enjoy a personalized shopping experience.
+  
+## 7. Next steps / Features to come
 
 Our vision for Dream Shop does not stop there. We are actively planning and developing new features to further improve the user experience and site management. Here are some of the improvements we are considering:
   
@@ -76,7 +140,7 @@ Our vision for Dream Shop does not stop there. We are actively planning and deve
   
 We look forward to sharing these updates with you in the near future. Stay tuned for more information on the latest improvements to Dream Shop!
 
-## 7. About
+## 8. About
 
 We like to collaborate and learn new things. Do not hesitate to contact us if you have any questions or comments about our work!
 
