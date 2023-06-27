@@ -1,7 +1,7 @@
 # <p align="center">Portfolio-Foundations</p>
 <img width="100%" src="https://github.com/CaroChoch/Portfolio-Foundations/assets/113856302/d038e7cc-3fd4-4a76-9d0f-58f00c369c58">  
   
-This project is a result of the collaborative efforts of [Mathieu Morel](https://github.com/MathieuMorel62) and [Caroline Chochoy](https://github.com/CaroChoch) as a part of their end-of-first-year portfolio project at [Holberton School](https://www.holbertonschool.fr/campus/lille), Lille. It was executed over a period of four weeks, highlighting the dedication and technical prowess of the team.
+This project is a result of the collaborative efforts of **[Mathieu Morel](https://github.com/MathieuMorel62)** and **[Caroline Chochoy](https://github.com/CaroChoch)** as a part of our end-of-first-year portfolio project at **[Holberton School](https://www.holbertonschool.fr/campus/lille)**, Lille. It was executed over a period of four weeks, highlighting the team's dedication, organization, and technical work. You can check out our **[landing page](https://mathieumorel62.github.io/Portfolio-Project---Landing-Page/)**.
 
 ## 1. Introduction
 
@@ -26,7 +26,7 @@ All our templates were created without the help of CSS frameworks like Bootstrap
 
 ## 3. Architecture and Operation
 <p align="center">
-<img src="https://github.com/CaroChoch/Portfolio-Foundations/assets/113856302/000e894a-a9f8-4e0e-8cc1-43ac4fc28247" width="100%" height="600">
+<img src="https://github.com/CaroChoch/Portfolio-Foundations/assets/113856302/000e894a-a9f8-4e0e-8cc1-43ac4fc28247" width="100%" height="650">
 </p>
 
 - 👤 **User**: The user interacts with the user interface by sending requests (such as viewing a product, adding an item to the cart...) and receiving responses (such as viewing product details, confirming the addition of an item to the cart...).
@@ -40,13 +40,19 @@ All our templates were created without the help of CSS frameworks like Bootstrap
 ## 4. Features
 The application has several attractive features that improve the user experience and facilitate management tasks:
 
-- `Store View`: Allows users to browse all available products. Products can be filtered according to their categories for a more targeted browsing experience.
-- `Product Details View`: Offers detailed information about a specific product, including its name, description, price, availability, images, size and color variations.
-- `Product Variations`: Effectively Manages product variations such as size and color, allowing each product to have several variations.
-- `Search`: Allows users to search for products using keywords, displaying the results in a convenient way on the store page.
-- `Cart Management`: Provides users with the opportunity to add products to their cart, view items in the cart and proceed with payment.
-- `Registration`: Offers users the opportunity to create a personal account. This allows them to benefit from a personalized experience.
-- `Login`: Allows registered users to easily log in to their account  
+- 🏪 **Store View**: Allows users to browse all available products. Products can be filtered according to their categories for a more targeted browsing experience.
+    
+- 📝 **Product Details View**: Offers detailed information about a specific product, including its name, description, price, availability, images, size and color variations.
+    
+- 🎨 **Product Variations**: Effectively Manages product variations such as size and color, allowing each product to have several variations.
+     
+- 🔍 **Search**: Allows users to search for products using keywords, displaying the results in a convenient way on the store page.
+     
+- 🛒 **Cart Management**: Provides users with the opportunity to add products to their cart, view items in the cart and proceed with payment.
+     
+- 📥 **Registration**: Offers users the opportunity to create a personal account. This allows them to benefit from a personalized experience.
+     
+- 🔑 **Login**: Allows registered users to easily log in to their account  
     
 <img width="33%" alt="Capture d’écran 2023-06-27 à 16 49 01" src="https://github.com/CaroChoch/Portfolio-Foundations/assets/113856302/46950f24-bea2-4267-b347-9c1e6b91aa82"> <img width="33%" alt="Capture d’écran 2023-06-27 à 16 49 38" src="https://github.com/CaroChoch/Portfolio-Foundations/assets/113856302/68a62dc9-cba9-457d-92ff-7b4aad62853b"> <img width="33%" alt="Capture d’écran 2023-06-27 à 16 50 33" src="https://github.com/CaroChoch/Portfolio-Foundations/assets/113856302/566725a2-ebab-493e-95db-6c13348aa3ff">
 
