@@ -1,0 +1,21 @@
+{% autoescape off %}
+
+Bonjour {{user.first_name}},
+
+Merci d’avoir créé votre compte client sur ma-boutique-de-reve.com .
+
+C’est un réel plaisir de vous savoir parmi nous !
+
+Merci de valider votre adresse email en cliquant sur le lien suivant :
+
+http://{{domain}}{% url 'activate' uidb64=uid token=token %}
+
+Un petit conseil : n’oubliez pas de vous identifier lorsque vous venez nous rendre visite sur ma-boutique-de-reve.com, vous accéderez facilement à vos informations personnelles et au suivi de vos commandes.
+
+Je suis impatiente de vous revoir !
+
+Coralie de Ma Boutique de Rêve 
+
+PS: Si vous recevez cet email par erreur, vous pouvez simplement l'ignorer. 
+
+{% endautoescape %}
