@@ -6,7 +6,7 @@ This project is a result of the collaborative efforts of **[Mathieu Morel](https
 ## 1. Introduction
 
 Our application, Dream Shop, developed with the Django framework, provides a comprehensive platform for creating and managing an online store, as well as selling products. Our online store features a list of product categories, detailed information about each item, and a search function to facilitate navigation.
-  
+   
 Designed with user-friendliness for consumers and ease of management for store administrators in mind, our application allows users to browse products, add them to their cart, and place orders with ease. Please note that our payment system has not been integrated yet, but we are actively working on implementing it in the near future.
   
 Additionally, our application offers users the ability to create a personal account and easily log in. This will enable them to enjoy a personalized experience, keep track of their past orders, and securely manage their personal information.
