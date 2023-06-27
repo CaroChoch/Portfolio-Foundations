@@ -12,8 +12,8 @@
   <div class="top-header">
     <div class="logo">
       <a href="{% url 'store' %}">
-      <img src="{% static 'styles/images/MA_BOUTIQUE_LOGO_Fond-Blanc.png' %}" alt="Logo boutique">
-    </a>
+        <img src="{% static 'styles/images/MA_BOUTIQUE_LOGO_Fond-Blanc.png' %}" alt="Logo boutique">
+      </a>
     </div>
     <!-- LOGOS RESEAUX SOCIAUX -->
     <div class="social-icons">
@@ -107,10 +107,16 @@
          ################################################################################################### -->
 
     <div class="nav-section">
-      <a href="#">Se connecter</a>
-      <a href="#">S'inscrire</a>
-      <a href="{% url 'cart' %}" class="nav-cart"><i class="fas fa-shopping-cart"></i><span id="cart-items">{{ cart_count }}</span></a>
-      <!-- <a href="#"><i class="fas fa-user"></i></a> -->
+      {% if user.id is None %}
+        <p class="title_close"></p>
+        <a href="{% url 'login' %}">Se connecter</a>
+        <a href="{% url 'register' %}">S'inscrire</a>
+        <a href="{% url 'cart' %}" class="nav-cart"><i class="fas fa-shopping-cart"></i><span id="cart-items">{{ cart_count }}</span></a>
+      {% else %}
+        <p class="title_open">Bonjour {{ user.first_name }}</p>
+        <a href="{% url 'logout' %}">Se déconnecter</a>
+        <a href="{% url 'cart' %}" class="nav-cart"><i class="fas fa-shopping-cart"></i><span id="cart-items">{{ cart_count }}</span></a>
+      {% endif %}
     </div>
   </nav>
   <div id="dummy_nav" style="display:none;"></div>
