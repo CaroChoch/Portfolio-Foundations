@@ -52,7 +52,7 @@ The application has several attractive features that improve the user experience
      
 - 📥 **Registration**: Offers users the opportunity to create a personal account. This allows them to benefit from a personalized experience.
      
-- 🔑 **Login**: Allows registered users to easily log in to their account  
+- 🔑 **Login / Logout**: Allows registered users to easily log in and log out to their account.  
     
 <img width="33%" alt="Capture d’écran 2023-06-27 à 16 49 01" src="https://github.com/CaroChoch/Portfolio-Foundations/assets/113856302/46950f24-bea2-4267-b347-9c1e6b91aa82"> <img width="33%" alt="Capture d’écran 2023-06-27 à 16 49 38" src="https://github.com/CaroChoch/Portfolio-Foundations/assets/113856302/68a62dc9-cba9-457d-92ff-7b4aad62853b"> <img width="33%" alt="Capture d’écran 2023-06-27 à 16 50 33" src="https://github.com/CaroChoch/Portfolio-Foundations/assets/113856302/566725a2-ebab-493e-95db-6c13348aa3ff">
 
