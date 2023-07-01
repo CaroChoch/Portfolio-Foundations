@@ -1,7 +1,9 @@
 # <p align="center">Portfolio-Foundations</p>
 <img width="100%" src="https://github.com/CaroChoch/Portfolio-Foundations/assets/113856302/d038e7cc-3fd4-4a76-9d0f-58f00c369c58">  
-  
+      
+    
 This project is a result of the collaborative efforts of **[Mathieu Morel](https://github.com/MathieuMorel62)** and **[Caroline Chochoy](https://github.com/CaroChoch)** as a part of our end-of-first-year portfolio project at **[Holberton School](https://www.holbertonschool.fr/campus/lille)**, Lille. It was executed over a period of four weeks, highlighting the team's dedication, organization, and technical work. You can check out our **[landing page](https://mathieumorel62.github.io/Portfolio-Project---Landing-Page/)**.
+
 
 ## 1. Introduction
 
@@ -26,16 +28,24 @@ All our templates were created without the help of CSS frameworks like Bootstrap
 
 ## 3. Architecture and Operation
 <p align="center">
-<img src="https://github.com/CaroChoch/Portfolio-Foundations/assets/113856302/000e894a-a9f8-4e0e-8cc1-43ac4fc28247" width="100%" height="650">
+<img width="100%" alt="image" src="https://github.com/CaroChoch/Portfolio-Foundations/assets/113856302/fe8a0770-b66e-46cc-89c4-0dd4d5e0bdfa">
 </p>
 
-- 👤 **User**: The user interacts with the user interface by sending requests (such as viewing a product, adding an item to the cart...) and receiving responses (such as viewing product details, confirming the addition of an item to the cart...).
-   
-- 🖥️ **User Interface (Frontend/UI)**: The user interface, built with HTML, CSS and JavaScript, sends user requests to the backend and displays responses from the backend to the user.  
-    
-- ⚙️ **Backend (Application Server)**: The backend, built with Django and Python, receives requests from the user interface. If a request requires interaction with the database (such as retrieving product details), the backend sends a request to the database and processes the response. The backend then sends the response to the user interface.
-      
-- 🗄️ **Database**: The MySQL database is used to store, retrieve, update and delete data based on requests received from the backend. Responses to backend requests are then returned to the backend.
+- 🧑‍💻 **Customer**: The user via his web browser sends a request to access a specific page on our website, for example, the home page or a product page.
+
+- 🌐 **Web server**: Our web server, for example Gunicorn, receives this request and transmits it to Django for processing.
+
+- 🔀 **URL Dispatcher**: Django examines the requested URL, and using the Dispatcher URL system, it determines which view function should process the request.
+
+- 🎥 **Views**: The view is a Python function that supports the query. She can perform various tasks, for example, retrieving information from the database.
+
+- 📝 **Model**: If data is needed from the database, the view uses the models to access it. Models are essentially Python representations of our database tables.
+
+- 🖼️ **Template**: Once the view has finished its work, it generates a rendering of a template, which is an HTML file with dynamically inserted data.
+
+- 📤 **Answer**: Finally, the view returns an HTTP response that is transmitted to the client via the web server. This answer is the rendered HTML that is displayed to the user.
+
+- 🖥️ **Client**: The user's browser receives the response, displays it as a web page, and the user can interact with it.
 
 ## 4. Features
 The application has several attractive features that improve the user experience and facilitate management tasks:
