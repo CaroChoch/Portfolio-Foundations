@@ -378,3 +378,269 @@
   margin-top: 10px;
   letter-spacing: 2px;
 }
+
+
+/* ###################################################################################################
+   #########################################  MEDIA QUERY ############################################
+   ################################################################################################### */
+   @media screen and (min-width: 1711px) and (max-width: 1936px) {
+    .item:nth-child(1),
+    .item:nth-child(2){
+      left:0;
+      top:0;
+      transform: translate(0,0);
+      border-radius: 0px;
+      width:100%;
+      height:100%;
+      box-shadow: none;
+    }
+    /* Styles pour le troisième élément */
+    .item:nth-child(3){
+      left:63%;
+    }
+    /* Styles pour le quatrième élément */
+    .item:nth-child(4){
+      left:calc(63% + 220px);
+    }
+    /* Styles pour le cinquième élément */
+    .item:nth-child(5){
+      left:calc(63% + 440px);
+    }
+    /* Styles pour tous les éléments au-delà du cinquième */
+    .item:nth-child(n+6){
+      left:calc(45% + 660px);
+      opacity: 0;
+    }
+    
+   }
+   @media screen and (min-width: 1501px) and (max-width: 1710px) {
+    .item:nth-child(1),
+.item:nth-child(2){
+  left:0;
+  top:0;
+  transform: translate(0,0);
+  border-radius: 0px;
+  width:100%;
+  height:100%;
+  box-shadow: none;
+}
+/* Styles pour le troisième élément */
+.item:nth-child(3){
+  left:56%;
+}
+/* Styles pour le quatrième élément */
+.item:nth-child(4){
+  left:calc(56% + 220px);
+}
+/* Styles pour le cinquième élément */
+.item:nth-child(5){
+  left:calc(56% + 440px);
+}
+/* Styles pour tous les éléments au-delà du cinquième */
+.item:nth-child(n+6){
+  left:calc(40% + 660px);
+  opacity: 0;
+}
+
+   }
+
+@media screen and (min-width: 1024px) and (max-width: 1500px) {
+    /* Style de chaque élément du diaporama */
+.item{
+  width:210px;
+  height:40vh;
+  top:50%;
+}
+/* Styles pour les deux premiers éléments */
+.item:nth-child(1),
+.item:nth-child(2){
+  left:0;
+  top:0;
+  transform: translate(0,0);
+  border-radius: 0px;
+  width:100%;
+  height:100%;
+  box-shadow: none;
+}
+/* Styles pour le troisième élément */
+.item:nth-child(3){
+  left: 57%;
+}
+/* Styles pour le quatrième élément */
+.item:nth-child(4){
+  left:calc(57% + 220px);
+}
+/* Styles pour le cinquième élément */
+.item:nth-child(5){
+  display: none;
+}
+/* Styles pour tous les éléments au-delà du cinquième */
+.item:nth-child(n+6){
+  display: none;
+}
+/* Style du contenu dans chaque élément du diaporama */
+.item .content{
+  position: absolute;
+  top: 50%;
+  left: 100px;
+  width: 300px;
+  text-align: left;
+  padding: 0;
+  color: var(--thirdly-color);
+  transform: translate(0,-50%);
+  display: none;
+  font-family: system-ui;
+}
+   }
+
+   @media screen and (min-width: 768px) and (max-width: 1024px) {
+    .item {
+      width: 20%;
+      height: 32%;
+      top:78%;
+
+  }
+    /* Styles pour le troisième élément */
+    .item:nth-child(3){
+      left:76%;
+    }
+    /* Styles pour le quatrième élément */
+    .item:nth-child(4){
+      display: none;
+    }
+    /* Styles pour le cinquième élément */
+    .item:nth-child(5){
+      display: none;
+    }
+    /* Styles pour tous les éléments au-delà du cinquième */
+    .item:nth-child(n+6){
+      display: none;
+    }
+    .item .name{
+      font-size: 65px;
+      margin-top: 78px;
+    }
+    /*****************BEST SELLER*********************/
+  
+    .section-bestseller {
+      margin-top: -75px;
+    }
+    /* Centrer et styliser le titre de la section Meilleures ventes */
+    .section-bestseller h2 {
+      font-size: 2.5em;
+    }
+    /* Style de chaque carte de produit */
+    .product-card{
+      width: 100%;
+    }
+    /* Style de l'image du produit */
+    .product-card img {
+      height: 650px;
+    }
+    /* boutton de à propos de */
+  .section-about .content .button {
+    margin-bottom: 15px;
+    margin-top: 35px;
+    font-size: 1em;
+
+  }
+}
+
+
+
+   /******************* 767 PX *******************/
+
+   @media screen and (max-width: 767px) {
+    /**************CARROUSEL**********************/
+  
+    /* On donne à chaque élément du carrousel une largeur de 50% */
+    .item {
+        width: 50%;
+        height: 100%;
+    }
+    /* Styles pour le troisième élément */
+    .item:nth-child(3){
+      display: none;
+    }
+    /* Styles pour le quatrième élément */
+    .item:nth-child(4){
+      display: none;
+    }
+    /* Styles pour le cinquième élément */
+    .item:nth-child(5){
+      display: none;
+    }
+    /* Styles pour tous les éléments au-delà du cinquième */
+    .item:nth-child(n+6){
+      display: none;
+    }
+    /* On adapte le contenu des éléments du carrousel */
+    .item .content {
+      width: 80%;
+    }
+    /* On adapte la taille des boutons du carrousel */
+    .buttons-car button {
+      width: 40px;
+      height: 40px;
+      font-size: 30px;
+    }
+    .item .name{
+      font-size: 50px;
+      margin-top: 78px;
+    }
+    /* Styles pour la description dans chaque élément */
+    .item .des{
+      font-size: 20px;
+      font-weight: 600;
+    }
+    /* Styles pour le bouton dans chaque élément */
+    .item .btn-car{
+      padding:15px 20px;
+      font-size: 15px;
+    }
+    /*****************BEST SELLER*********************/
+  
+    .section-bestseller {
+      margin-top: -70px;
+    }
+    /* Centrer et styliser le titre de la section Meilleures ventes */
+    .section-bestseller h2 {
+      font-size: 2.5em;
+    }
+    /* Style de chaque carte de produit */
+    .product-card{
+      width: 100%;
+    }
+    /* Style de l'image du produit */
+    .product-card img {
+      height: 650px;
+    }
+    /****************** ABOUT ************************/
+    
+    /* Section à propos de */
+    .section-about {
+      margin: 5em 0;
+      display: flex;
+      text-align: center;
+      padding-top: 50px;
+    }
+    .section-about .content h2 {
+      text-align: center;
+      font-size: 2em;
+      margin-top: 20px;
+    }
+    /* Image de la section à propos de */
+    .section-about img {
+      width: 80%;
+    }
+    /* Contenu de la section à propos de */
+    .section-about .content {
+      width: 100%;
+      font-size: 1em;
+      margin: 20px;
+    }
+    .section-about .content p {
+      font-size: 19px;
+    }
+  }
+  
