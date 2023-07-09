@@ -1,4 +1,4 @@
-/* Le style de fond général de la page */
+/* General Page Background Style */
 .background-signin {
   position: absolute;
   top: 0;
@@ -12,7 +12,8 @@
   z-index: -1;
   opacity: 0.3;
 }
-/* Ajouter une superposition de couleur à l'arrière-plan pour améliorer la lisibilité du texte au premier plan */
+
+/* Add a color overlay to the background to improve foreground text readability */
 .background-signin::after {
   content: "";
   display: block;
@@ -23,7 +24,8 @@
   height: 100%;
   background-color: rgba(49, 93, 104, 0.5);
 }
-/* Style de base pour le container où le contenu principal sera affiché */
+
+/* Basic style for the container where the main content will be displayed */
 .container-signin {
   position: relative;
   padding: 40px;
@@ -37,11 +39,13 @@
     inset 5px 5px 15px rgb(237, 227, 227);
   background-color: rgba(255, 255, 255, 0.7);
 }
-/* Garantir que la barre de navigation reste au-dessus de tout le reste */
+
+/* Ensure the navigation bar stays on top of everything */
 nav.sticky-nav {
   z-index: 100;
 }
-/* Style de l'élément form dans le conteneur, alignement et espacement */
+
+/* Style for the form element inside the container, alignment, and spacing */
 .container-signin .signin {
   display: flex;
   justify-content: center;
@@ -49,7 +53,8 @@ nav.sticky-nav {
   flex-direction: column;
   gap: 25px;
 }
-/* Style des titres h2 dans les formulaires */
+
+/* Style for h2 headings in the forms */
 .container-signin .signin h2 {
   color: #315D68;
   padding-top: 10px;
@@ -58,13 +63,15 @@ nav.sticky-nav {
   font-size: 2em;
   font-family: 'Ananda', arial, cursive, sans-serif;
 }
-/* Style des champs de saisie (inputBox) */
+
+/* Style for input fields (inputBox) */
 .container-signin .signin .inputBox {
   position: relative;
   width: 300px;
   margin-right: 45px;
 }
-/* Style des inputs dans inputBox */
+
+/* Style for inputs inside inputBox */
 .container-signin .signin .inputBox input {
   padding: 12px 10px 12px 48px;
   border: none;
@@ -81,7 +88,8 @@ nav.sticky-nav {
   outline: none;
   opacity: 0.7;
 }
-/* Style du span dans inputBox */
+
+/* Style for the span inside inputBox */
 .container-signin .signin .inputBox span {
   position: absolute;
   margin-top: -43px;
@@ -94,7 +102,8 @@ nav.sticky-nav {
   letter-spacing: 0.01em;
   color: rgba(255, 255, 255, 0.5);
 }
-/* Modification de la couleur et de la bordure des inputs valides et focus dans inputBox */
+
+/* Styling for valid and focused inputs inside inputBox */
 .container-signin .signin .inputBox input:valid ~ span,
 .container-signin .signin .inputBox input:focus ~ span {
   color: #fff;
@@ -106,12 +115,14 @@ nav.sticky-nav {
   border-radius: 10px;
   letter-spacing: 0.1em;
 }
-/* Modification de la couleur et de la bordure des inputs valides et focus dans inputBox */
+
+/* Styling for valid and focused inputs inside inputBox */
 .container-signin .signin .inputBox input:valid,
 .container-signin .signin .inputBox input:focus {
   border: 1px solid rgba(49, 93, 104, 0.8);;
 }
-/* Style de l'icône (i) dans inputBox */
+
+/* Style for the icon (i) inside inputBox */
 .container-signin .signin .inputBox i {
   position: absolute;
   top: 15px;
@@ -122,7 +133,8 @@ nav.sticky-nav {
   color: #fff;
   border-right: 1px solid yellow;
 }
-/* Style du bouton de soumission dans inputBox */
+
+/* Style for the submit button inside inputBox */
 .container-signin .signin .inputBox input[type="submit"] {
   background: #315D68;
   color: #fff;
@@ -138,28 +150,33 @@ nav.sticky-nav {
   width: 362px;
   transition: background 0.2s ease-in-out, color 0.2s ease-in-out;
 }
-/* Ajout d'un effet de survol aux boutons de soumission */
+
+/* Add hover effect to submit buttons */
 .container-signin .signin .inputBox input[type="submit"]:hover {
-  background: #1a2e45; /* Changez cela à la couleur que vous préférez pour le hover */
-  color: #ffffff; /* Changez cela à la couleur que vous préférez pour le texte lors du hover */
+  background: #1a2e45;
+  color: #ffffff;
 }
-/* Style des paragraphes dans le formulaire */
+
+/* Style for paragraphs in the form */
 .container-signin .signin p {
   color: #315D68;
   font-size: 1.2em;
   font-weight: 300;
 }
-/* Style des liens dans les paragraphes du formulaire */
+
+/* Style for links in the form paragraphs */
 .container-signin .signin p a {
   color: #315D68;
   font-size: 1em;
   transition: color 0.2s ease-in-out;
 }
-/* Ajout d'un effet de survol aux liens */
+
+/* Add hover effect to links */
 .container-signin .signin p a:hover {
   color: #2e859a;
 }
-/* Style des liens de mot de passe oublié dans inputBox */
+
+/* Style for forgot password links in inputBox */
 .container-signin .signin .inputBox .forgot-password {
   color: #315D68;
   font-size: 15px;
@@ -169,7 +186,8 @@ nav.sticky-nav {
   text-align: center;
   transition: color 0.2s ease-in-out;
 }
-/* Ajout d'un effet de survol au lien de mot de passe oublié */
+
+/* Adding a hover effect to the forgot password link */
 .container-signin .signin .inputBox .forgot-password:hover {
   color: #2e859a;
 }

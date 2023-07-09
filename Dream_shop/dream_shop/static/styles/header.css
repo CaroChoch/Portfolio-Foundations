@@ -2,13 +2,13 @@
    ##########################################  STYLE GLOBAL  #########################################
    ################################################################################################### */
 
-/* Réinitialisation globale des styles */
+/* Global reset styles */
 * {
   margin: 0;
   padding: 0;
 }
 
-/* Styles pour body et html : mise en place d'une disposition flex, définition d'une police, et prévention du défilement horizontal */
+/* Styles for body and html: flex layout, font family, prevent horizontal scrolling */
 body, html {
   display: flex;
   flex-direction: column;
@@ -23,7 +23,7 @@ body, html {
    ############################################  STYLE HEADER  #######################################
    ################################################################################################### */
 
-/* Styles pour le haut du header : position, arrière-plan en dégradé, ombre portée, disposition flex, padding */
+/* Styles for the top header: position, gradient background, box shadow, flex layout, padding */
 .top-header {
   position: relative;
   background: linear-gradient(to right, #f8f9fa, #e9ecef);
@@ -38,10 +38,10 @@ body, html {
 }
 
 /* ###################################################################################################
-   ##########################################  STYLE LOGO  ###########################################
+   ##########################################  LOGO STYLE  ###########################################
    ################################################################################################### */
 
-/* Styles pour le logo : disposition flex */
+/* Styles for the logo */
 .logo {
   display: flex;
   justify-content: center;
@@ -49,7 +49,7 @@ body, html {
   flex-grow: 1;
 }
 
-/* Styles pour l'image du logo : dimensions, transition */
+/* Styles for the logo image */
 .logo img {
   width: 500px;
   height: 150px;
@@ -57,10 +57,10 @@ body, html {
 }
 
 /* ###################################################################################################
-   #######################################  STYLE ICÔNES SOCIALES  ######################################
+   #######################################  SOCIAL ICONS STYLE  ######################################
    ################################################################################################### */
 
-/* Styles pour les icônes sociales : position, disposition flex, espace entre les éléments */
+/*  Styles for the social icons */
 .social-icons {
   position: absolute;
   right: 40px;
@@ -69,22 +69,22 @@ body, html {
   gap: 20px;
 }
 
-/* Styles pour les images des icônes sociales : hauteur, transition */
+/* Styles for social icon images */
 .social-icons img {
   height: 80%;
   transition: transform 0.3s;
 }
 
-/* Effet de survol pour les images des icônes sociales */
+/* Hover effect for social icon images */
 .social-icons img:hover {
   transform: scale(1.2);
 }
 
 /* ###################################################################################################
-   #########################################  MESSAGE PROMOTIONNEL  #########################################
+   ###################################  PROMOTIONAL MESSAGE STYLE  ###################################
    ################################################################################################### */
 
-/* Styles pour le message promotionnel : alignement du texte, padding, police, taille de police, couleur, arrière-plan, ombre du texte, bordure */
+/* Styles for the promotional message */
 .promo-message {
   text-align: center;
   padding: 10px 0;
@@ -96,7 +96,7 @@ body, html {
   border-bottom: 1px solid #315D68;
 }
 
-/* Styles pour le message promotionnel quand il est vide */
+/* Styles for the promotional message when it is empty */
 .promo-message:empty {
   padding: 0;
   background-color: transparent;
@@ -105,7 +105,7 @@ body, html {
   animation: none;
 }
 
-/* Effet d'animation pour le texte promotionnel */
+/* Animation effect for the promotional message */
 @keyframes glow {
   0% {
     text-shadow: 0 0 5px pink, 0 0 10px rgb(220, 146, 159), 0 0 15px pink, 0 0 20px pink;
@@ -120,10 +120,14 @@ body, html {
   }
 }
 
-/* Styles pour le message promotionnel quand il n'est pas vide */
+/* Styles for the promotional message when it is not empty */
 .promo-message:not(:empty) {
   animation: glow 1s infinite;
 }
+
+/* ###################################################################################################
+   #########################################  MEDIA QUERIES  #########################################
+   ################################################################################################### */
 
 @media screen and (max-width: 600px) {
   .logo img {
@@ -132,4 +136,3 @@ body, html {
     transition: transform 0.2s;
   }
 }
-

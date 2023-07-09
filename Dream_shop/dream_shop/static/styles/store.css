@@ -1,4 +1,4 @@
-/* Configuration du titre de la page */
+/* Configuration for the page title */
 .page-title {
   margin-top: 19px;
   text-align: center;
@@ -16,7 +16,7 @@
   letter-spacing: 2px;
 }
 
-/* Configuration de la grille de produits */
+/* Configuration for the product grid */
 .product-grid {
   display: flex;
   flex-wrap: wrap;
@@ -25,7 +25,7 @@
   text-align: center;
 }
 
-/* Configuration de la carte du produit */
+/* Configuration for the product card */
 .product-card {
   margin-left: auto;
   margin-right: auto;
@@ -42,7 +42,7 @@
   vertical-align: top;
 }
 
-/* Configuration de l'image du produit */
+/* Configuration for the product image */
 .product-image {
   width: 100%;
   height: 500px;
@@ -53,7 +53,7 @@
   overflow: hidden;
 }
 
-/* Configuration de la face avant et arrière de l'image du produit */
+/* Configuration for the front and back faces of the product image */
 .image-face {
   position: absolute;
   width: 100%;
@@ -62,41 +62,41 @@
   transition: transform 0.6s linear;
 }
 
-/* Configuration de l'image dans la face de l'image du produit */
+/* Configuration for the image inside the product image face */
 .image-face img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 .product-card.no-second-image:hover .front {
-  transform: rotateY(0deg); /* Pas de rotation */
+  transform: rotateY(0deg);
 }
 
 .product-card.no-second-image:hover .back {
-  transform: rotateY(180deg); /* Pas de rotation */
+  transform: rotateY(180deg);
 }
 
-/* Configuration de la face avant de l'image */
+/* Configuration for the front face of the image */
 .front {
   transform: rotateY(0deg);
 }
 
-/* Configuration de la face arrière de l'image */
+/* Configuration for the back face of the image */
 .back {
   transform: rotateY(180deg);
 }
 
-/* Configuration de l'animation de rotation au survol de l'image du produit */
+/* Configuration for the rotation animation on hover of the product image */
 .product-image:hover .front {
   transform: rotateY(-180deg);
 }
 
-/* Configuration de l'animation de rotation au survol de l'image du produit sans deuxième image */
+/* Configuration for the rotation animation on hover of the product image without a second image */
 .product-image:hover .back {
   transform: rotateY(0deg);
 } 
 
-/* Configuration du nom du produit */
+/* Configuration for the product name */
 .product-name {
   color: #315D68;
   font-size: 1.5em;
@@ -104,7 +104,7 @@
   font-family: 'Ananda', arial, cursive, sans-serif;
 }
 
-/* Configuration du prix du produit */
+/* Configuration for the product price */
 .product-price {
   color: #315D68;
   font-size: 1.2em;
@@ -112,7 +112,7 @@
   font-weight: 300;
 }
 
-/* Configuration boutton des détails du produit */
+/* Configuration for the product details button */
 .product-details {
   display: inline-block;
   font-family: 'Ananda', arial, cursive, sans-serif;
@@ -127,13 +127,13 @@
   transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
 }
 
-/* Configuration des détails du produit au survol */
+/* Configuration for the product details button on hover */
 .product-details:hover {
   background-color: #1a2e45;
   color: #ffffff;
 }
 
-/* Style pour le compteur de produits */
+/* Style for the product count */
 .product_count {
   font-family: 'Ananda';
   color: #315D68;
@@ -145,12 +145,13 @@
   text-align: center;
 }
 
-/* Style pour les éléments <b> dans .product_count */
+/* Style for the <b> elements in .product_count */
 .product_count b {
   font-family: Arial, Helvetica, sans-serif;
   margin-left: 5px;
 }
-/* Style pour le message panier vide */
+
+/* Style for the empty cart message */
 .text-danger {
   color: red;
   font-size: 25px;
@@ -160,7 +161,7 @@
 
 /* #################### PAGINATION ################### */
 
-/* Gére la mise en page générale de la pagination. */
+/* General layout for pagination */
 .pagination {
   display: flex;
   justify-content: center;
@@ -169,16 +170,19 @@
   font-size: 20px;
   font-weight: 300;
 }
-/* Gére l'espacement entre chaque élément de pagination. */
+
+/* Spacing between pagination elements */
 .page-item {
   margin: 0 5px;
 }
-/* Gére le style des liens dans la pagination. */
+
+/* Style for links in pagination */
 .page-link {
   color: #315D68;
   text-decoration: none;
 }
-/* Gére le style des liens dans les éléments de pagination désactivés et actifs. */
+
+/* Style for links in disabled and active pagination items */
 .page-item.disabled .page-link,
 .page-item.active .page-link {
   color: red;

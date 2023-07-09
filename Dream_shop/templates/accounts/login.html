@@ -1,35 +1,34 @@
 {% extends 'base.html' %}
 {% block content %}
 
-
+<!-- Sign-in Page -->
 <div class="background-signin"></div>
 <div class="container-signin">
-  <!-- Formulaire de connexion -->
-  {% include 'includes/alerts.html' %}
-  <form action="{% url 'login' %}" method="POST">
-  
-  <div class="signin">
-    <h2>Se Connecter</h2>
-    {% csrf_token %}
-    <div class="inputBox">
-      <input type="email" required="required" name="email">
-      <i class="fa-solid fa-envelope"></i>
-      <span>Adresse e-mail</span>
-    </div>
-    <div class="inputBox">
-      <input type="password" required="required" name="password">
-      <i class="fa-solid fa-lock"></i>
-      <span>Mot de passe</span>
-    </div>
-    <div class="inputBox">
-      <a href="#" class="forgot-password">Mot de passe oublié?</a>
-    </div>
-    <div class="inputBox">
-      <input type="submit" value="Connexion">
-    </div>
-    <p>Non Enregistré ? <a href="{% url 'register' %}" class="create">Créer un compte</a></p>
-  </div>
-  </form>
+    <!-- Include alerts section -->
+    {% include 'includes/alerts.html' %}
+    <form action="{% url 'login' %}" method="POST">
+        <div class="signin">
+            <h2>Se Connecter</h2>
+            {% csrf_token %}
+            <div class="inputBox">
+                <input type="email" required="required" name="email">
+                <i class="fa-solid fa-envelope"></i>
+                <span>Adresse e-mail</span>
+            </div>
+            <div class="inputBox">
+                <input type="password" required="required" name="password">
+                <i class="fa-solid fa-lock"></i>
+                <span>Mot de passe</span>
+            </div>
+            <div class="inputBox">
+                <a href="#" class="forgot-password">Mot de passe oublié?</a>
+            </div>
+            <div class="inputBox">
+                <input type="submit" value="Connexion">
+            </div>
+            <p>Non Enregistré ? <a href="{% url 'register' %}" class="create">Créer un compte</a></p>
+        </div>
+    </form>
 </div>
 
 {% endblock %}

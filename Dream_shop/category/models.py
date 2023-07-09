@@ -1,14 +1,15 @@
 from django.db import models
 from django.urls import reverse
 
-# Les choix pour le champ de genre.
+
+# Choices for the gender field.
 GENDER_CHOICES = [
     ('H', 'Homme'),
     ('F', 'Femme'),
     ('O', 'Autre'),
 ]
 
-# Les choix pour le champ de type de produit.
+# Choices for the product type field.
 PRODUCT_TYPE_CHOICES = [
     ('Y', 'Accessoires Homme'),
     ('X', 'Accessoires Femme'),
@@ -18,51 +19,51 @@ PRODUCT_TYPE_CHOICES = [
 ]
 
 class Category(models.Model):
+	"""
+		Represents a category of products.
+
+		Attributes:
+			category_name (CharField): The name of the category (max length: 50, unique).
+			category_online (CharField): The online category name (max length: 50, default: empty string).
+			slug (SlugField): The slug field for the category's URL (max length: 100, unique).
+			description (TextField): The description of the category (max length: 255, blank).
+			cat_image (ImageField): The image for the category (upload to: 'photos/categories', blank).
+			gender (CharField): The gender for the category (max length: 1, choices: GENDER_CHOICES, default: empty string).
+			product_type (CharField): The product type for the category (max length: 1, choices: PRODUCT_TYPE_CHOICES, default: empty string).
+	"""
+	category_name   = models.CharField(max_length=50, unique=True)
+	category_online = models.CharField(max_length=50, default="")
+	slug            = models.SlugField(max_length=100, unique=True)
+	description     = models.TextField(max_length=255, blank=True)
+	cat_image       = models.ImageField(upload_to='photos/categories', blank=True)
+	gender          = models.CharField(max_length=1, choices=GENDER_CHOICES, default="")
+	product_type    = models.CharField(max_length=1, choices=PRODUCT_TYPE_CHOICES, default="")
+
+
+	class Meta:
+		"""
+			verbose_name (str): The verbose name for the model.
+      verbose_name_plural (str): The verbose name in plural form for the model.
+		"""
+		verbose_name        = 'category'
+		verbose_name_plural = 'categories'
+
+
+	def get_url(self):
+		"""
+      Returns the URL of the category.
+
+      Returns:
+        str: The URL of the category.
     """
-    Modèle Django représentant une catégorie de produits.
+		return reverse('products_by_category', args=[self.slug])
 
-    Champs:
-    - category_name: Le nom de la catégorie.
-    - category_online: Champ inutilisé dans le code actuel, peut-être prévu pour des usages futurs.
-    - slug: L'identifiant unique pour la catégorie utilisé dans les URLs.
-    - description: Une description détaillée de la catégorie.
-    - cat_image: L'image associée à la catégorie.
-    - gender: Le genre auquel la catégorie est associée (Homme, Femme ou Autre).
-    - product_type: Le type de produits que contient la catégorie (Vêtements ou Accessoires pour Homme ou Femme).
+
+	def __str__(self):
+		"""
+      Returns a string representation of the category.
+
+      Returns:
+        str: The string representation of the category.
     """
-    category_name   = models.CharField(max_length=50, unique=True)
-    category_online = models.CharField(max_length=50, default="")
-    slug            = models.SlugField(max_length=100, unique=True)
-    description     = models.TextField(max_length=255, blank=True)
-    cat_image       = models.ImageField(upload_to='photos/categories', blank=True)
-    gender          = models.CharField(max_length=1, choices=GENDER_CHOICES, default="")
-    product_type    = models.CharField(max_length=1, choices=PRODUCT_TYPE_CHOICES, default="")
-
-    class Meta:
-        """
-        Classe Meta contenant les métadonnées pour le modèle Category.
-
-        Attributs:
-        - verbose_name: Le nom en lecture facile pour le modèle.
-        - verbose_name_plural: Le nom en lecture facile pour le modèle au pluriel.
-        """
-        verbose_name        = 'category'
-        verbose_name_plural = 'categories'
-
-    def get_url(self):
-        """
-        Méthode pour obtenir l'URL de la vue des produits par catégorie pour cette catégorie.
-
-        Retourne:
-        L'URL de la vue des produits par catégorie pour cette catégorie.
-        """
-        return reverse('products_by_category', args=[self.slug])
-
-    def __str__(self):
-        """
-        Méthode pour obtenir une représentation sous forme de chaîne de caractères de l'objet Category.
-
-        Retourne:
-        Le nom de la catégorie.
-        """
-        return self.category_name
+		return self.category_name

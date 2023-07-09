@@ -1,4 +1,4 @@
-/* Configuration du conteneur des alertes */
+/* Styles for the container_alert class */
 .container_alert {
   display: flex;
   margin-bottom: 15px;
@@ -7,12 +7,14 @@
   padding: 10px;
   background-color: #315D68;
 }
-/* Configuration des message alertes */
+
+/* Styles for the alert class */
 .alert {
   flex-grow: 1;
   color: white;
 }
-/* Configuration du bouton de fermeture */
+
+/* Styles for the close class */
 .close {
   font-size: 20px;
   padding: 1px;
@@ -21,11 +23,13 @@
   background-color: transparent;
   border: none;
 }
-/* Configuration de l'icône de fermeture */
+
+/* Styles for the close-icon class */
 .close-icon {
   cursor: pointer;
 }
-/* Message d'erreur */
+
+/* Styles for the errorlist class */
 .errorlist {
   list-style-type: none;
   color: white;

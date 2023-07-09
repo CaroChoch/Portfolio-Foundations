@@ -5,11 +5,26 @@ from django.utils import timezone
 
 class MyAccountManager(BaseUserManager):
   """
-  Gestionnaire personnalisé pour le modèle Account.
+    Custom account manager where an email is the unique identifiers
+    for authentication instead of usernames.
+
+    Methods:
+      create_user: Create and save a User with the given email, username and password.
+      create_superuser: Create and save a SuperUser with the given email, username and password.
   """
   def create_user(self, first_name, last_name, username, email, password=None):
     """
-    Crée et sauvegarde un utilisateur standard avec les champs spécifiés.
+      Create and save a User with the given email, username and password.
+
+      Args:
+        first_name (str): First name of the user.
+        last_name (str): Last name of the user.
+        username (str): Username of the user.
+        email (str): Email of the user.
+        password (str, optional): Password of the user. Defaults to None.
+      
+      Returns:
+        User: The user that was created.
     """
     if not email:
       raise ValueError('User must have an email address')
@@ -26,11 +41,23 @@ class MyAccountManager(BaseUserManager):
 
     user.set_password(password)
     user.save(using=self._db)
+
     return user
   
+
   def create_superuser(self, first_name, last_name, email, username, password):
     """
-    Crée et sauvegarde un superutilisateur avec tous les droits d'administration.
+      Create and save a SuperUser with the given email, username and password.
+
+      Args:
+        first_name (str): First name of the user.
+        last_name (str): Last name of the user.
+        email (str): Email of the user.
+        username (str): Username of the user.
+        password (str): Password of the user.
+      
+      Returns:
+        User: The user that was created.
     """
     user = self.create_user(
       email      = self.normalize_email(email),
@@ -43,64 +70,114 @@ class MyAccountManager(BaseUserManager):
     user.is_active     = True
     user.is_staff      = True
     user.is_superadmin = True
+  
     user.save(using=self._db)
+  
     return user
 
 
 class Account(AbstractBaseUser):
   """
-  Modèle de compte utilisateur personnalisé.
-  """
+    Custom User model where email is the unique identifier
+    and has an is_admin field to allow access to admin app
+
+    Attributes:
+      GENDER_CHOICES (tuple): Choices for the gender of the user.
+      civility (CharField): The user's civility. This field uses the GENDER_CHOICES.
+      first_name (CharField): The user's first name.
+      last_name (CharField): The user's last name.
+      address (CharField): The user's address.
+      postal_code (CharField): The user's postal code.
+      city (CharField): The user's city.
+      country (CharField): The user's country.
+      email (EmailField): The user's email.
+      phone_number (CharField): The user's phone number.
+      birth_date (DateField): The user's birth date.
+      username (CharField): The user's username.
+      date_joined (DateTimeField): The date the user joined.
+      last_login (DateTimeField): The user's last login date and time.
+      is_admin (BooleanField): If the user is an admin.
+      is_staff (BooleanField): If the user is staff.
+      is_active (BooleanField): If the user is active.
+      is_superadmin (BooleanField): If the user is a superadmin.
+      USERNAME_FIELD (str): The field to use as username.
+      REQUIRED_FIELDS (list): The fields that are required.
+      objects (MyAccountManager): The account manager for the user.
+    """
   GENDER_CHOICES = (
     ('F', 'Madame'),
     ('M', 'Monsieur'),
   )
 
-  civility     = models.CharField(max_length=1, choices=GENDER_CHOICES, default='')
-  first_name   = models.CharField(max_length=50)
-  last_name    = models.CharField(max_length=50)
-  address      = models.CharField(max_length=100, default='')
-  postal_code  = models.CharField(max_length=20, default='00000')
-  city         = models.CharField(max_length=50, default='')
-  country      = models.CharField(max_length=50, default='')
-  email        = models.EmailField(max_length=100, unique=True)
-  phone_number = models.CharField(max_length=50)
-  birth_date   = models.DateField(default=timezone.now)
-  username     = models.CharField(max_length=50, unique=True)
+  civility        = models.CharField(max_length=1, choices=GENDER_CHOICES, default='')
+  first_name      = models.CharField(max_length=50)
+  last_name       = models.CharField(max_length=50)
+  address         = models.CharField(max_length=100, default='')
+  postal_code     = models.CharField(max_length=20, default='00000')
+  city            = models.CharField(max_length=50, default='')
+  country         = models.CharField(max_length=50, default='')
+  email           = models.EmailField(max_length=100, unique=True)
+  phone_number    = models.CharField(max_length=50)
+  birth_date      = models.DateField(default=timezone.now)
+  username        = models.CharField(max_length=50, unique=True)
 
-  # Ces champs sont requis pour la gestion des utilisateurs dans Django
-  date_joined      = models.DateTimeField(auto_now_add=True)
-  last_login       = models.DateTimeField(auto_now_add=True)
-  is_admin         = models.BooleanField(default=False)
-  is_staff         = models.BooleanField(default=False)
-  is_active        = models.BooleanField(default=False)
-  is_superadmin    = models.BooleanField(default=False)
+  date_joined     = models.DateTimeField(auto_now_add=True)
+  last_login      = models.DateTimeField(auto_now_add=True)
+  is_admin        = models.BooleanField(default=False)
+  is_staff        = models.BooleanField(default=False)
+  is_active       = models.BooleanField(default=False)
+  is_superadmin   = models.BooleanField(default=False)
 
-  # Définition du champ utilisé comme identifiant pour ce modèle d'utilisateur
+  # Definition of the field used as the identifier for this user model.
   USERNAME_FIELD  = 'email'
-  # Champs requis lors de la création d'un utilisateur
+  # Required fields when creating a user:
   REQUIRED_FIELDS = ['username', 'first_name', 'last_name']
-
-  # Lien du modèle d'utilisateur avec le gestionnaire créé précédemment
+  # Link the user model with the previously created manager.
   objects = MyAccountManager()
 
+
   def get_civility_display(self):
+    """
+      Returns the readable value of the civility choice field.
+
+      Returns:
+        str: The readable value of the civility.
+    """
     return dict(self.GENDER_CHOICES).get(self.civility)
+
 
   def __str__(self):
     """
-    Renvoie une représentation en chaîne de caractères de l'instance de modèle Account.
+      Returns the string representation of the user.
+
+      Returns:
+        str: The string representation of the user.
     """
     return self.email
 
+
   def has_perm(self, perm, obj=None):
     """
-    Vérifie si l'utilisateur a une permission spécifique.
+      Checks if user has a specific permission.
+
+      Args:
+        perm (str): The permission to check.
+        obj (Model, optional): The object to check the permission against. Defaults to None.
+
+      Returns:
+        bool: If the user has the permission.
     """
     return self.is_admin
 
+
   def has_module_perms(self, add_label):
     """
-    Vérifie si l'utilisateur a des permissions sur un module spécifique.
+      Checks if user has permissions to view the app `add_label` (always True for simplicity)
+
+      Args:
+        add_label (str): The label of the app.
+
+      Returns:
+        bool: If the user has the permission.
     """
     return True

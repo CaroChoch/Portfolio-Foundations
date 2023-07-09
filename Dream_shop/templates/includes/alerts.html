@@ -1,40 +1,43 @@
 {% if messages %}
-  {% for message in messages %}
-  <!-- Affichage des messages -->
-  <div id="message" class="container_alert">
+{% for message in messages %}
+<!-- Message Container -->
+<div id="message" class="container_alert">
     <div {% if message.tags %} class="alert alert-{{ message.tags }}" {% endif %} role="alert">
-      {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}<strong>Important:</strong> {% endif %}
-      {{ message }}
+        {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}<strong>Important:</strong> {% endif %}
+        {{ message }}
     </div>
-    <!-- Bouton de fermeture du message -->
+    <!-- Close Button -->
     <button type="button" class="close" data-dismiss="alert">
-      <span class="close-icon" onclick="this.parentElement.style.display='none';">&times;</span>
+        <span class="close-icon" onclick="this.parentElement.style.display='none';">&times;</span>
     </button>
-  </div>
-  {% endfor %}
+</div>
+{% endfor %}
 {% endif %}
 
+<!-- Javascript function -->
 <script>
 (function() {
-  // Fonction pour fermer le message
+  // Function to close the message
   function closeMessage() {
     var container = this.parentElement;
     container.style.display = 'none';
   }
 
-  //  Fonction Attaché à tous les éléments ayant la classe "close"
+  // Attach the closeMessage function to all elements with the "close" class
   var closeButtons = document.getElementsByClassName('close');
   for (var i = 0; i < closeButtons.length; i++) {
     closeButtons[i].onclick = closeMessage;
   }
 
-  // Fermeture automatique du message après un délai de 4 secondes
+  // Automatically close the message after a delay of 4 seconds
   setTimeout(function() {
     var message = document.getElementById('message');
     if (message) {
+      // Apply transition effect to fade out the message
       message.style.transition = 'opacity 1s';
       message.style.opacity = '0';
       setTimeout(function() {
+        // Hide the message container after the transition
         message.style.display = 'none';
       }, 1000);
     }
