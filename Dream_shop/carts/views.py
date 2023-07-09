@@ -8,14 +8,13 @@ from django.core.exceptions import ObjectDoesNotExist
 
 def _cart_id(request):
   """
-    Obtient l'ID du panier de la session en cours.
+    Get the ID of the current session's cart.
 
     Args:
-        request: L'objet de requête Django.
+      request: The Django request object.
 
     Returns:
-        str: L'ID du panier de la session.
-
+      str: The ID of the session's cart.
   """
   cart = request.session.session_key
   if not cart:
@@ -25,19 +24,17 @@ def _cart_id(request):
 
 def add_cart(request, product_id):
   """
-    Ajoute un produit au panier.
+    Add a product to the cart.
 
     Args:
-        request: L'objet de requête Django.
-        product_id (int): L'ID du produit à ajouter.
+      request: The Django request object.
+      product_id (int): The ID of the product to add.
 
     Returns:
-        django.shortcuts.redirect: Redirection vers la page du panier.
-
+      django.shortcuts.redirect: Redirect to the cart page.
   """
-  # Obtient le produit à partir de l'ID
+  # Get the product based on the ID
   product = Product.objects.get(id=product_id)
-  # Liste des variations sélectionnées par l'utilisateur
   product_variation = []
   
   if request.method == 'POST':
@@ -45,44 +42,44 @@ def add_cart(request, product_id):
       key = item
       value = request.POST[key]
       try:
-        # Vérifie si la variation existe pour le produit
+        # Check if the variation exists for the product
         variation = Variation.objects.get(product=product, variation_category__iexact=key, variation_value__iexact=value)
-         # Ajoute la variation à la liste des variations du produit
+        # Add the variation to the product's variation list
         product_variation.append(variation)
       except:
         pass
 
   try:
-    # Obtient le panier existant à partir de l'ID de session
+    # Get the existing cart based on the session ID
     cart = Cart.objects.get(cart_id=_cart_id(request))
   except Cart.DoesNotExist:
-    # Crée un nouveau panier s'il n'existe pas
+    # Create a new cart if it doesn't exist
     cart = Cart.objects.create(cart_id = _cart_id(request))
 
   cart.save()
 
-  # Vérifie si le produit avec les mêmes variations existe déjà dans le panier
+  # Check if the product with the same variations already exists in the cart
   cart_items = CartItem.objects.filter(product=product, cart=cart)
   added = False
 
   for cart_item in cart_items:
     existing_variations = cart_item.variations.all()
     if set(existing_variations) == set(product_variation):
-      # Augmente la quantité de l'article dans le panier
+      # Increase the quantity of the item in the cart
       cart_item.quantity += 1
       cart_item.save()
       added = True
       break
 
   if not added:
-    # Crée un nouvel article de panier avec la quantité 1
+    # Create a new cart item with quantity 1
     cart_item = CartItem.objects.create(
       product=product,
       quantity=1,
       cart=cart,
     )
     if len(product_variation) > 0:
-      # Ajoute les variations sélectionnées à l'article de panier
+      # Add the selected variations to the cart item
       cart_item.variations.clear()
       cart_item.variations.add(*product_variation)
     cart_item.save()
@@ -92,30 +89,29 @@ def add_cart(request, product_id):
 
 def remove_cart(request, product_id, cart_item_id):
   """
-    Supprime un produit du panier ou réduit sa quantité.
+    Remove a product from the cart or decrease its quantity.
 
     Args:
-        request: L'objet de requête Django.
-        product_id (int): L'ID du produit à supprimer du panier.
-        cart_item_id (int): L'ID de l'élément du panier à supprimer ou réduire.
+      request: The Django request object.
+      product_id (int): The ID of the product to remove from the cart.
+      cart_item_id (int): The ID of the cart item to remove or decrease.
 
     Returns:
-        django.shortcuts.redirect: Redirection vers la page du panier.
-
+      django.shortcuts.redirect: Redirect to the cart page.
   """
-  # Obtient le panier à partir de l'ID de session
+  # Get the cart based on the session ID
   cart = Cart.objects.get(cart_id=_cart_id(request))
-  # Obtient le produit à partir de l'ID
+  # Get the product based on the ID
   product = get_object_or_404(Product, id=product_id)
   try:
-    # Obtient l'élément du panier correspondant au produit et à l'ID de l'élément
+    # Get the cart item corresponding to the product and cart item ID
     cart_item = CartItem.objects.get(product=product, cart=cart, id=cart_item_id)
     if cart_item.quantity > 1:
-      # Réduit la quantité de l'élément du panier
+      # Decrease the quantity of the cart item
       cart_item.quantity -= 1
       cart_item.save()
     else:
-      # Supprime complètement l'élément du panier
+      # Completely remove the cart item
       cart_item.delete()
   except:
     pass
@@ -124,55 +120,53 @@ def remove_cart(request, product_id, cart_item_id):
 
 def remove_cart_item(request, product_id, cart_item_id):
   """
-    Supprime complètement un produit du panier.
+    Completely remove a product from the cart.
 
     Args:
-        request: L'objet de requête Django.
-        product_id (int): L'ID du produit à supprimer du panier.
-        cart_item_id (int): L'ID de l'élément du panier à supprimer.
+      request: The Django request object.
+      product_id (int): The ID of the product to remove from the cart.
+      cart_item_id (int): The ID of the cart item to remove.
 
     Returns:
-        django.shortcuts.redirect: Redirection vers la page du panier.
-
+      django.shortcuts.redirect: Redirect to the cart page.
   """
-  # Obtient le panier à partir de l'ID de session
+  # Get the cart based on the session ID
   cart = Cart.objects.get(cart_id=_cart_id(request))
-  # Obtient le produit à partir de l'ID
+  # Get the product based on the ID
   product = get_object_or_404(Product, id=product_id)
-  # Obtient l'élément du panier correspondant au produit et à l'ID de l'élément
+  # Get the cart item corresponding to the product and cart item ID
   cart_item = CartItem.objects.get(product=product, cart=cart.id, id=cart_item_id)
-  # Supprime complètement l'élément du panier
+  # Completely remove the cart item
   cart_item.delete()
   return redirect('cart')
 
 
 def cart(request, total=0, quantity=0, cart_items=None):
   """
-    Affiche le panier d'achat.
+    Display the shopping cart.
 
     Args:
-        request: L'objet de requête Django.
-        total (float): Le total du panier (par défaut : 0).
-        quantity (int): La quantité totale des produits dans le panier (par défaut : 0).
-        cart_items (QuerySet): Les éléments du panier (par défaut : None).
+      request: The Django request object.
+      total (float): The total of the cart (default: 0).
+      quantity (int): The total quantity of products in the cart (default: 0).
+      cart_items (QuerySet): The cart items (default: None).
 
     Returns:
-        django.shortcuts.render: Rendu de la page du panier.
-
+      django.shortcuts.render: Render the cart page.
   """
   tax = 0
   grand_total = 0
   try:
-    # Obtient le panier à partir de l'ID de session
+    # Get the cart based on the session ID
     cart = Cart.objects.get(cart_id=_cart_id(request))
-    # Obtient tous les éléments du panier actifs
+    # Get all active cart items
     cart_items = CartItem.objects.filter(cart=cart, is_active=True)
     for cart_item in cart_items:
-      # Calcule le total en multipliant le prix du produit par sa quantité dans le panier
+      # Calculate the total by multiplying the product price by its quantity in the cart
       total += (cart_item.product.price * cart_item.quantity)
-      # Calcule la quantité totale de produits dans le panier
+      # Calculate the total quantity of products in the cart
       quantity += cart_item.quantity
-    # Calcule la taxe en appliquant un pourcentage fixe (20%) sur le total
+    # Calculate the tax by applying a fixed percentage (20%) on the total
     tax = (20 * total)/100
   except ObjectDoesNotExist:
     pass

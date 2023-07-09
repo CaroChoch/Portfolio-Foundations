@@ -3,29 +3,30 @@ from store.models import Product, Category
 
 
 def home(request):
-    """
-    Vue pour afficher la page d'accueil du site.
-    """
+	"""
+		Renders the home page with featured products and category links.
 
-    # Récupérer tous les produits disponibles
-    category = Category.objects.get(category_online="Best seller")
-    products = Product.objects.filter(is_available=True, category=category)[:3]
+		Retrieves the best seller category and filters products that are available and belong to this category.
+		Retrieves category links for women and men, as well as accessory categories for women and men.
 
-    women_links = Category.objects.filter(product_type='B')
-    men_links = Category.objects.filter(product_type='A')
-    
-    women_acc = Category.objects.filter(product_type='X')
-    men_acc = Category.objects.filter(product_type='Y')
+		Returns:
+			A rendered home page template with the featured products and category links.
+	"""
+	category = Category.objects.get(category_online="Best seller")
+	products = Product.objects.filter(is_available=True, category=category)[:3]
 
+	women_links = Category.objects.filter(product_type='B')
+	men_links = Category.objects.filter(product_type='A')
+	
+	women_acc = Category.objects.filter(product_type='X')
+	men_acc = Category.objects.filter(product_type='Y')
 
-    # Préparer le contexte avec les produits pour l'affichage dans le template
-    context = {
-        'products': products,
-        'women_links': women_links,
-        'women_acc': women_acc,
-        'men_links': men_links,
-        'men_acc': men_acc,
-    }
+	context = {
+			'products': products,
+			'women_links': women_links,
+			'women_acc': women_acc,
+			'men_links': men_links,
+			'men_acc': men_acc,
+	}
 
-    # Renvoyer la réponse avec le template 'home.html' et le contexte
-    return render(request, 'home.html', context)
+	return render(request, 'home.html', context)

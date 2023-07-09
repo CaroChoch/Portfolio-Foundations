@@ -3,19 +3,30 @@ from .models import Product, Variation
 
 
 class ProductAdmin(admin.ModelAdmin):
-    """
-    Configuration de l'administration pour le modèle Product.
-    """
-    list_display = ('product_name', 'price', 'stock', 'category', 'modified_date', 'is_available')
-    # Spécifie les champs à afficher dans la vue liste du panneau d'administration
-    prepopulated_fields = {'slug': ('product_name',)}
-    # Spécifie les champs à pré-remplir en se basant sur d'autres champs
+	"""
+	Admin configuration for the Product model.
+
+	Attributes:
+		list_display (tuple): Fields to display in the admin list view.
+		prepopulated_fields (dict): Fields to prepopulate based on other fields.
+	"""
+	list_display = ('product_name', 'price', 'stock', 'category', 'modified_date', 'is_available')
+	prepopulated_fields = {'slug': ('product_name',)}
+
 
 class VariationAdmin(admin.ModelAdmin):
-    list_display = ('product', 'variation_category', 'variation_value', 'is_active')
-    list_editable = ('is_active',)
-    list_filter = ('product', 'variation_category', 'variation_value')
+	"""
+    Admin configuration for the Variation model.
 
-# Enregistre le modèle Product avec sa configuration d'administration correspondante
+    Attributes:
+      list_display (tuple): Fields to display in the admin list view.
+      list_editable (tuple): Fields that can be edited directly in the list view.
+      list_filter (tuple): Fields to use for filtering in the admin list view.
+  """
+	list_display = ('product', 'variation_category', 'variation_value', 'is_active')
+	list_editable = ('is_active',)
+	list_filter = ('product', 'variation_category', 'variation_value')
+
+# Register the Product model with its corresponding admin configuration.
 admin.site.register(Product, ProductAdmin)
 admin.site.register(Variation, VariationAdmin)

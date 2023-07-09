@@ -1,4 +1,4 @@
-/* Définie le fond de la page du produit */
+/* Defines the background of the product page */
 .background-detail {
   position: absolute;
   top: 0;
@@ -7,7 +7,8 @@
   width: 100%;
   background-color: #f5f5f5;
 }
-/* Classe pour la carte du produit */
+
+/* Class for the product card */
 .product-card-detail {
   position: relative;
   display: flex;
@@ -25,20 +26,22 @@
   margin-bottom: 50px;
   gap: 20px;
 }
-/* Classe pour l'image du produit */
+
+/* Class for the product image */
 .product-image-detail {
   flex: 45%;
-  /* height: 45em; pour bloquer le hauter de l'image */
   padding-bottom: 50px;
 }
-/* Classe pour le style de l'image elle-même */
+
+/* Class for the style of the image itself */
 .product-image-detail img {
-  width: 100%;
+  width: 97%;
   height: 90%;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   border-radius: 20px;
 }
-/* Classe pour les informations du produit */
+
+/* Class for the product information */
 .product-info-detail {
   flex: 60%;
   display: flex;
@@ -50,7 +53,8 @@
   padding-left: 20px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
-/* Classe pour le titre du produit (nom) */
+
+/* Class for the product title (name) */
 .product-info-detail h2 {
   color: #315D68;
   margin-right: 30px;
@@ -63,7 +67,8 @@
   padding: 15px;
   border-radius: 10px;
 }
-/* Classe pour le prix du produit */
+
+/* Class for the product price */
 .product-info-detail h3 {
   color: #315D68;
   margin-right: 30px;
@@ -73,7 +78,8 @@
   padding: 15px;
   border-radius: 10px;
 }
-/* Classe pour la description du produit */
+
+/* Class for the product description */
 .product-info-detail p {
   color: #315D68;
   margin-right: 30px;
@@ -84,7 +90,8 @@
   padding: 15px;
   border-radius: 10px;
 }
-/* Classe pour le conteneur de sélection de quantité */
+
+/* Class for the quantity selection container */
 .select-quantity-detail {
   display: flex;
   text-align: center;
@@ -97,12 +104,13 @@
   padding: 10px;
   border-radius: 10px;
 }
-/* Classe pour l'input de type "number" */
+
+/* Class for the "number" type input */
 .product-info-detail input[type="number"] {
   height: 1px;
 }
 
-/* Classe pour le style du selecteur de quantité et de l'input du nombre */
+/* Class for the style of the quantity selector and number input */
 .product-info-detail select,
 .product-info-detail input[type="number"] {
   padding: 15px;
@@ -117,7 +125,8 @@
   outline: none;
   width: 62%;
 }
-/* Classe pour le bouton d'achat */
+
+/* Class for the purchase button */
 .product-info-detail .btn-detail {
   border: none;
   padding: 15px 0;
@@ -134,16 +143,20 @@
   font-size: 18px;
   border-radius: 5px;
 } 
-/* Classe pour le bouton d'achat lorsqu'il est survolé */
+
+/* Class for the purchase button when hovered */
 .product-info-detail .btn-detail:hover {
   background: #1a2e45;
   color: #ffffff;
 }
+
+/* Icon styling within the purchase button */
 .product-info-detail .btn-detail i {
   padding-left: 20px;
   color: white;
 }
-/* Styles communs pour les titres, paragraphes et conteneur de quantité */
+
+/* Common styles for titles, paragraphs, and quantity container */
 .product-info-detail h2,
 .product-info-detail h3,
 .product-info-detail p,
@@ -153,37 +166,43 @@
   margin-top: 66px;
   margin-bottom: 15px;
 }
-/* Styles spécifiques pour les titres */
+
+/* Specific styles for titles */
 .product-info-detail h2:before {
   content: "\f06b";
   font-family: FontAwesome;
   margin-right: 10px;
   padding-right: 20px;
 }
-/* Styles spécifiques pour les sous-titres */
+
+/* Specific styles for subtitles */
 .product-info-detail h3:before {
   content: "\f153"; 
   font-family: FontAwesome;
   margin-right: 10px;
   padding-right: 20px;
 }
-/* Styles pour le conteneur de quantité */
+
+/* Styles for the quantity container */
 .select-quantity-detail > div {
   flex: 1;
 }
-/* Styles pour les images des vignettes */
+
+/* Styles for thumbnail images */
 .product-thumbnail img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
-/* Styles pour le conteneur des vignettes */
+
+/* Styles for the thumbnail container */
 .product-thumbnails {
   display: flex;
   justify-content: flex-start;
   gap: 10px;
 }
-/* Styles pour chaque vignette */
+
+/* Styles for each thumbnail */
 .product-thumbnail {
   flex: 1;
   max-width: 20%;

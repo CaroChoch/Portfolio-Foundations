@@ -109,10 +109,13 @@ def product_detail(request, category_slug, product_slug):
 
 
 def search(request):
+    # Vérifie si le mot-clé est présent dans la requête GET
     if 'keyword' in request.GET:
         keyword = request.GET['keyword']
+        # Si le mot-clé n'est pas vide
         if keyword:
             products = Product.objects.order_by('-created_date').filter(Q(description__icontains=keyword) | Q(product_name__icontains=keyword))
+            # Compte le nombre total de produits trouvés
             product_count = products.count()
 
     context = {
