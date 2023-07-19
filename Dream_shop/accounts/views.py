@@ -8,21 +8,21 @@ from django.contrib.auth.decorators import login_required
 
 def register(request):
   """
-  Gère l'enregistrement d'un nouvel utilisateur.
+    Manages the registration of a new user.
 
-  Si la méthode de la requête est POST, cette fonction récupère les données du formulaire d'inscription à partir de la requête,
-  puis valide le formulaire. Si le formulaire est valide, un nouvel utilisateur est créé et sauvegardé en base de données,
-  un message de succès est affiché à l'utilisateur et une réponse JSON indiquant le succès est renvoyée.
-  Si le formulaire n'est pas valide, une réponse JSON indiquant l'échec et contenant les erreurs de formulaire est renvoyée.
+    If the request method is POST, this function retrieves the registration form data from the request,
+    then validates the form. If the form is valid, a new user is created and saved in the database,
+    a success message is displayed to the user, and a JSON response indicating success is returned.
+    If the form is not valid, a JSON response indicating failure and containing the form errors is returned.
 
-  Si la méthode de la requête n'est pas POST (par exemple, GET), cette fonction crée un nouveau formulaire d'inscription vide
-  et renvoie la page d'inscription avec ce formulaire.
-
-  Args:
-    request (HttpRequest): La requête HTTP reçue.
-
-  Returns:
-    HttpResponse: La réponse HTTP à renvoyer au client.
+    If the request method is not POST (e.g., GET), this function creates a new empty registration form
+    and returns the registration page with this form.
+    
+    Args:
+    request (HttpRequest): The received HTTP request.
+    
+    Returns:
+    HttpResponse: The HTTP response to be sent back to the client.
   """
   if request.method == 'POST':
     form = RegistrationForm(request.POST)
@@ -73,19 +73,19 @@ def register(request):
 
 def login(request):
   """
-  Gère la connexion d'un utilisateur.
+    Manages the login of a user.
 
-  Si la méthode de la requête est POST, cette fonction récupère l'e-mail et le mot de passe de l'utilisateur à partir de la requête,
-  puis tente d'authentifier l'utilisateur. Si l'utilisateur est authentifié avec succès, il est connecté et redirigé vers la page d'accueil.
-  Sinon, un message d'erreur est affiché à l'utilisateur et il est redirigé vers la page de connexion.
-
-  Si la méthode de la requête n'est pas POST (par exemple, GET), cette fonction renvoie simplement la page de connexion.
-
-  Args:
-    request (HttpRequest): La requête HTTP reçue.
-
-  Returns:
-    HttpResponse: La réponse HTTP à renvoyer au client.
+    If the request method is POST, this function retrieves the user's email and password from the request,
+    then attempts to authenticate the user. If the user is successfully authenticated, they are logged in and redirected to the home page.
+    Otherwise, an error message is displayed to the user and they are redirected to the login page.
+    
+    If the request method is not POST (e.g., GET), this function simply returns the login page.
+    
+    Args:
+    request (HttpRequest): The received HTTP request.
+    
+    Returns:
+    HttpResponse: The HTTP response to be sent back to the client.
   """
   if request.method == 'POST':
     email = request.POST['email']
@@ -107,18 +107,18 @@ def login(request):
 @login_required(login_url = 'login')
 def logout(request):
   """
-  Gère la déconnexion d'un utilisateur.
-
-  Cette fonction déconnecte l'utilisateur et affiche un message de succès,
-  puis redirige l'utilisateur vers la page de connexion.
-
-  Cette fonction nécessite que l'utilisateur soit connecté (déterminé par le décorateur login_required).
-
-  Args:
-    request (HttpRequest): La requête HTTP reçue.
-
-  Returns:
-    HttpResponse: La réponse HTTP à renvoyer au client.
+    Manages the logout of a user.
+    
+    This function logs out the user, displays a success message,
+    and redirects the user to the login page.
+    
+    This function requires the user to be logged in (determined by the login_required decorator).
+    
+    Args:
+    request (HttpRequest): The received HTTP request.
+    
+    Returns:
+    HttpResponse: The HTTP response to be sent back to the client.
   """
   auth.logout(request)
   messages.success(request, 'Vous êtes bien déconnecté !')
