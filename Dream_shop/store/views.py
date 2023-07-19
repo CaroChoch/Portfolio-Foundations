@@ -10,41 +10,41 @@ from django.http import HttpResponse
 
 def store(request, category_slug=None):
     """
-    Vue pour afficher la page principale du magasin.
+        View for displaying the main page of the store.
 
-    Arguments:
-    request -- Requête HTTP
-    category_slug -- Slug de la catégorie (par défaut: None)
-
-    Retourne:
-    Réponse HTTP avec le rendu de la page du magasin
+        Arguments:
+        request -- HTTP request
+        category_slug -- Category slug (default: None)
+        
+        Returns:
+        HTTP response with the rendering of the store page
     """
-    # Initialiser les variables
+    # Initializing the variables
     categories = None
     products = None
     page_title = "Collection Complète"
 
-    # Si un slug de catégorie est fourni
+    # If a category slug is provided
     if category_slug is not None:
-        # Récupérer la catégorie correspondante ou lever une erreur 404 si elle n'existe pas
+        # Retrieve the corresponding category or raise a 404 error if it doesn't exist
         categories = get_object_or_404(Category, slug=category_slug)
         
-        # Filtrer les produits disponibles en fonction de cette catégorie
+        # Filter the available products based on this category
         products = Product.objects.filter(category=categories, is_available=True)
 
-        # Paginator pour la page store avec 9 elements par page
+        # Paginator for the store page with 9 items per page
         paginator = Paginator(products, 9)
         page = request.GET.get('page')
         paged_products = paginator.get_page(page)
         
-        # Compter le nombre de produits disponibles dans cette catégorie
+        # Count the number of available products in this category
         product_count = products.count()
         page_title = categories.category_name
     else:
-        # Si aucun slug de catégorie n'est fourni, récupérer tous les produits disponibles
+        # If no category slug is provided, retrieve all available products
         products = Product.objects.filter(is_available=True).order_by('id')
 
-        # Filtrer les produits par genre (homme ou femme) et par type de produit
+        # Filter the products by gender (male or female) and by product type
         gender = request.GET.get('gender')
         category = request.GET.get('category')
         if gender == 'men':
@@ -67,55 +67,55 @@ def store(request, category_slug=None):
             products = products.filter(category__product_type='X')
             page_title = "Accessoires Femme"
 
-        # Pagination de store avec 9 elements par page
+        # Pagination of the store with 9 items per page
         paginator = Paginator(products, 9)
         page = request.GET.get('page')
         paged_products = paginator.get_page(page)
 
-        # Compter le nombre total de produits disponibles
+        # Count the total number of available products
         product_count = products.count()
 
-    # Créer le contexte avec les produits, le nombre de produits et le titre de la page
+    # Create the context with the products, the number of products, and the page title
     context = {
         'products': paged_products,
         'product_count': product_count,
         'page_title': page_title,
     }
 
-    # Rendre la page du magasin avec le contexte créé
+    # Render the store page with the created context
     return render(request, 'store/store.html', context)
 
 
 
 def product_detail(request, category_slug, product_slug):
     """
-    Vue pour afficher le détail d'un produit spécifique.
+        View to display the details of a specific product.
     """
     try:
-        # Récupérer le produit spécifique ou lever une exception si il n'existe pas
+        # Retrieve the specific product or raise an exception if it does not exist.
         single_product = Product.objects.get(category__slug=category_slug, slug=product_slug)
         in_cart = CartItem.objects.filter(cart__cart_id=_cart_id(request), product=single_product).exists()
     except Exception as e:
         raise e
 
-    # Créer le contexte avec le produit et les liens des catégories
+    # Create the context with the product and category links.
     context = {
         'single_product': single_product,
         'in_cart': in_cart,
     }
 
-    # Rendre la page de détail du produit avec le contexte créé
+    # Render the product detail page with the created context.
     return render(request, 'store/product_detail.html', context)
 
 
 def search(request):
-    # Vérifie si le mot-clé est présent dans la requête GET
+    # Check if the keyword is present in the GET request.
     if 'keyword' in request.GET:
         keyword = request.GET['keyword']
         # Si le mot-clé n'est pas vide
         if keyword:
             products = Product.objects.order_by('-created_date').filter(Q(description__icontains=keyword) | Q(product_name__icontains=keyword))
-            # Compte le nombre total de produits trouvés
+            # Count the total number of found products.
             product_count = products.count()
 
     context = {
