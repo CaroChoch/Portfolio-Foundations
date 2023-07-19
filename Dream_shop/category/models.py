@@ -43,7 +43,7 @@ class Category(models.Model):
 	class Meta:
 		"""
 			verbose_name (str): The verbose name for the model.
-      verbose_name_plural (str): The verbose name in plural form for the model.
+      			verbose_name_plural (str): The verbose name in plural form for the model.
 		"""
 		verbose_name        = 'category'
 		verbose_name_plural = 'categories'
@@ -51,19 +51,19 @@ class Category(models.Model):
 
 	def get_url(self):
 		"""
-      Returns the URL of the category.
+      			Returns the URL of the category.
 
-      Returns:
-        str: The URL of the category.
-    """
+		      	Returns:
+				str: The URL of the category.
+		"""
 		return reverse('products_by_category', args=[self.slug])
 
 
 	def __str__(self):
 		"""
-      Returns a string representation of the category.
+      			Returns a string representation of the category.
 
-      Returns:
-        str: The string representation of the category.
-    """
+			Returns:
+				str: The string representation of the category.
+    		"""
 		return self.category_name
