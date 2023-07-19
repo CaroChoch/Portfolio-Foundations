@@ -8,15 +8,15 @@ from django.utils.translation import gettext_lazy as _
 
 class RegistrationForm(forms.ModelForm):
 	"""
-    Form for registering a new account.
+    		Form for registering a new account.
 
-    Attributes:
-        password (CharField): The user's password.
-        confirm_password (CharField): Confirmation of the user's password.
-        birth_date (DateField): The user's birth date.
+		Attributes:
+			password (CharField): The user's password.
+		        confirm_password (CharField): Confirmation of the user's password.
+		        birth_date (DateField): The user's birth date.
 
-    The Meta class within specifies the model (Account) and fields to be included in the form.
-  """
+    		The Meta class within specifies the model (Account) and fields to be included in the form.
+  	"""
 	password = forms.CharField(widget=forms.PasswordInput())
 	confirm_password = forms.CharField(widget=forms.PasswordInput())
 	
@@ -30,22 +30,22 @@ class RegistrationForm(forms.ModelForm):
 
 	class Meta:
 		"""
-      Meta class for RegistrationForm.
+      			Meta class for RegistrationForm.
 
-      Specifies the model to be used in the form (Account) and the fields to be included in the form.
+      			Specifies the model to be used in the form (Account) and the fields to be included in the form.
 
 			Attributes:
 				model (Model): The model to be used in the form, Account.
 				fields (list): The fields to be included in the form.
-    """
+    		"""
 		model = Account
 		fields = ['civility', 'first_name', 'last_name', 'address', 'postal_code', 'city', 'country', 'email', 'phone_number', 'birth_date', 'password', 'confirm_password']
 
 
 	def clean(self):
 		"""
-      Validates that the two password inputs match and meet the password requirements.
-    """
+      			Validates that the two password inputs match and meet the password requirements.
+    		"""
 		cleaned_data = super(RegistrationForm, self).clean()
 		password = cleaned_data.get('password')
 		confirm_password = cleaned_data.get('confirm_password')
@@ -71,8 +71,8 @@ class RegistrationForm(forms.ModelForm):
 
 	def clean_postal_code(self):
 		"""
-      Validates that the postal code is a 5-digit number.
-    """
+      			Validates that the postal code is a 5-digit number.
+    		"""
 		postal_code = self.cleaned_data.get('postal_code')
 
 		if len(postal_code) != 5 or not postal_code.isdigit():
@@ -83,8 +83,8 @@ class RegistrationForm(forms.ModelForm):
 
 	def clean_phone_number(self):
 		"""
-      Validates that the phone number is a 10-digit number.
-    """
+		      Validates that the phone number is a 10-digit number.
+		"""
 		phone_number = self.cleaned_data.get('phone_number')
 		# Remove non-numeric characters from the phone number.
 		phone_number = re.sub(r'\D', '', phone_number)
@@ -100,8 +100,8 @@ class RegistrationForm(forms.ModelForm):
 
 	def clean_birth_date(self):
 		"""
-      Validates that the birth date is not in the future and the user is at least 18 years old.
-    """
+			Validates that the birth date is not in the future and the user is at least 18 years old.
+    		"""
 		birth_date = self.cleaned_data.get('birth_date')
 		today = date.today()
 		age_limit = today - timedelta(days=365 * 18)
