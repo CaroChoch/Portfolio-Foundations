@@ -23,6 +23,16 @@ else
     exit 1
 fi
 
+# Importation des données dans la base de données
+echo "📥 Importation des données dans la base de données..."
+if mysql -u root -p db_dream_shop < Dream_shop/db_dream_shop_dump.sql
+then
+    echo "✅ Données importées avec succès dans 'db_dream_shop' !"
+else
+    echo "❌ Erreur lors de l'importation des données."
+    exit 1
+fi
+
 # Configuration de Django
 echo "⚙️ Configuration de Django..."
 cd Dream_shop
