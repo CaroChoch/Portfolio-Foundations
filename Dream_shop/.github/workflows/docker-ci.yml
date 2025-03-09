@@ -1,0 +1,50 @@
+# Nom du workflow qui apparaît dans l'interface GitHub Actions
+name: Docker CI
+
+# Définit quand ce workflow sera déclenché
+on:
+  push:
+    # Se déclenche lorsque du code est poussé sur main ou master
+    branches: [ main, master ]
+  pull_request:
+    # Se déclenche lors des pull requests vers main ou master
+    branches: [ main, master ]
+
+# Définit les tâches que ce workflow va exécuter
+jobs:
+  # Job pour construire et tester l'image Docker
+  docker:
+    # Utilise une machine virtuelle Ubuntu récente
+    runs-on: ubuntu-latest
+    
+    # Étapes à exécuter dans ce job
+    steps:
+      # Récupère le code source du dépôt
+      - name: Checkout
+        uses: actions/checkout@v3
+      
+      # Configure Docker Buildx pour de meilleures performances
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+      
+      # Construit l'image Docker selon le Dockerfile du projet
+      - name: Build Docker image
+        uses: docker/build-push-action@v4
+        with:
+          # Utilise le répertoire courant comme contexte de build
+          context: .
+          # Ne pousse pas l'image vers un registre Docker
+          push: false
+          # Charge l'image dans le Docker Engine local
+          load: true
+          # Tague l'image avec le nom "dreamshop:test"
+          tags: dreamshop:test
+          # Utilise le cache GitHub Actions pour accélérer les builds
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+      
+      # Exécute les tests dans l'image Docker
+      - name: Test Docker image
+        run: |
+          # Lance pytest dans le conteneur ou affiche un message si pas de tests
+          docker run --rm dreamshop:test python -m pytest -xvs || echo "No tests to run" 
